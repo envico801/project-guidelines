@@ -11,293 +11,226 @@
 
 ### 1.1 Some Git rules
 
-There are a set of rules to keep in mind:
+Q:: What type of branch should you perform work in?
+A:: You should perform work in a feature branch. This way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 
-- Perform work in a feature branch.
+Q:: Which branch should you branch out from when creating a feature branch?
+A:: You should branch out from `develop`. This way, you can make sure that code in master will almost always build without problems, and can be mostly used directly for releases (this might be overkill for some projects).
 
-  _Why:_
+Q:: (Cloze) When working with Git, you should never push into {{c1::develop}} or {{c2::master}} branch. Instead, you should make a {{c3::Pull Request}}.
+A:: (Cloze) It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
 
-  > Because this way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
+Q:: What steps should you take before pushing your feature and making a Pull Request?
+A:: You should update your local `develop` branch and do an interactive rebase. Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). This results in a nice and clean history. [read more ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
-- Branch out from `develop`
+Q:: When should you resolve potential conflicts in your Git workflow?
+A:: You should resolve potential conflicts while rebasing and before making a Pull Request.
 
-  _Why:_
+Q:: What should you do with local and remote feature branches after merging?
+A:: You should delete local and remote feature branches after merging. This will prevent cluttering up your list of branches with dead branches. It ensures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
 
-  > This way, you can make sure that code in master will almost always build without problems, and can be mostly used directly for releases (this might be overkill for some projects).
+Q:: (Cloze) Before making a Pull Request, ensure your feature branch {{c1::builds successfully}} and {{c2::passes all tests}}, including {{c3::code style checks}}.
+A:: (Cloze) You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally, you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
 
-- Never push into `develop` or `master` branch. Make a Pull Request.
+Q:: Why should you use a specific `.gitignore` file?
+A:: You should use [this](https://github.com/elsewhencode/project-guidelines/blob/master/.gitignore) `.gitignore` file because it already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
 
-  _Why:_
-
-  > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
-
-- Update your local `develop` branch and do an interactive rebase before pushing your feature and making a Pull Request.
-
-  _Why:_
-
-  > Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). Resulting in a nice and clean history. [read more ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
-
-- Resolve potential conflicts while rebasing and before making a Pull Request.
-- Delete local and remote feature branches after merging.
-
-  _Why:_
-
-  > It will clutter up your list of branches with dead branches. It ensures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
-
-- Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
-
-  _Why:_
-
-  > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally, you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
-
-- Use [this](./.gitignore) `.gitignore` file.
-
-  _Why:_
-
-  > It already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
-
-- Protect your `develop` and `master` branch.
-
-  _Why:_
-
-  > It protects your production-ready branches from receiving unexpected and irreversible changes. read more... [GitHub](https://help.github.com/articles/about-protected-branches/), [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html) and [GitLab](https://docs.gitlab.com/ee/user/project/protected_branches.html)
-
-<a name="git-workflow"></a>
+Q:: How can you protect your `develop` and `master` branches?
+A:: You should enable branch protection for your `develop` and `master` branches. It protects your production-ready branches from receiving unexpected and irreversible changes. Read more about branch protection on [GitHub](https://help.github.com/articles/about-protected-branches/), [Bitbucket](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html), and [GitLab](https://docs.gitlab.com/ee/user/project/protected_branches.html).
 
 ### 1.2 Git workflow
 
-Because of most of the reasons above, we use [Feature-branch-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow) with [Interactive Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing) and some elements of [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow) (naming and having a develop branch). The main steps are as follows:
+Q:: What is the first step in initializing a new project with Git?
+A:: For a new project, initialize a git repository in the project directory using the commands:
+```sh
+cd <project directory>
+git init
+```
+Note: This step should be ignored for subsequent features/changes.
 
-- For a new project, initialize a git repository in the project directory. **For subsequent features/changes this step should be ignored**.
+Q:: How do you create a new feature or bug-fix branch in Git?
+A:: You can create a new feature or bug-fix branch using the command:
+```sh
+git checkout -b <branchname>
+```
 
-  ```sh
-  cd <project directory>
-  git init
-  ```
+Q:: (Cloze) When making changes in Git, you should use {{c1::git add <file1> <file2> ...}} to add files, followed by {{c2::git commit}} to commit the changes.
+A:: (Cloze) `git add <file1> <file2> ... ` - you should add only files that make up a small and coherent change. `git commit` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
 
-- Checkout a new feature/bug-fix branch.
-  ```sh
-  git checkout -b <branchname>
-  ```
-- Make Changes.
+Q:: What Git command can you use to review introduced changes one by one before committing?
+A:: You can use `git add -p`, which will give you a chance to review all of the introduced changes one by one, and decide whether to include them in the commit or not.
 
-  ```sh
-  git add <file1> <file2> ...
-  git commit
-  ```
+Q:: How do you sync with the remote repository to get changes you've missed?
+A:: You can sync with the remote repository using these commands:
+```sh
+git checkout develop
+git pull
+```
+This will give you a chance to deal with conflicts on your machine while rebasing (later) rather than creating a Pull Request that contains conflicts.
 
-  _Why:_
+Q:: What is the purpose of interactive rebasing in the Git workflow?
+A:: Interactive rebasing is used to update your feature branch with the latest changes from develop. You can use the following commands:
+```sh
+git checkout <branchname>
+git rebase -i --autosquash develop
+```
+You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
 
-  > `git add <file1> <file2> ... ` - you should add only files that make up a small and coherent change.
+Q:: (Cloze) If you have conflicts during rebasing, you should {{c1::resolve them}} and then continue the rebase using {{c2::git rebase --continue}}.
+A:: (Cloze) To resolve conflicts, use:
+```sh
+git add <file1> <file2> ...
+git rebase --continue
+```
 
-  > `git commit` will start an editor which lets you separate the subject from the body.
+Q:: Why do you need to use the -f flag when pushing after a rebase?
+A:: When you do a rebase, you are changing the history on your feature branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag. The command to use is:
+```sh
+git push -f
+```
+[read more...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
-  > Read more about it in _section 1.3_.
+Q:: What is the less destructive alternative to `git push -f` if someone else is working on your branch?
+A:: If someone else is working on your branch, you can use the less destructive `--force-with-lease` option instead of `-f`.
 
-  _Tip:_
-
-  > You could use `git add -p` instead, which will give you chance to review all of the introduced changes one by one, and decide whether to include them in the commit or not.
-
-- Sync with remote to get changes you’ve missed.
-  ```sh
-  git checkout develop
-  git pull
-  ```
-  _Why:_
-  > This will give you a chance to deal with conflicts on your machine while rebasing (later) rather than creating a Pull Request that contains conflicts.
-- Update your feature branch with latest changes from develop by interactive rebase.
-  ```sh
-  git checkout <branchname>
-  git rebase -i --autosquash develop
-  ```
-  _Why:_
-  > You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
-- If you don’t have conflicts, skip this step. If you have conflicts, [resolve them](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/) and continue rebase.
-  ```sh
-  git add <file1> <file2> ...
-  git rebase --continue
-  ```
-- Push your branch. Rebase will change history, so you'll have to use `-f` to force changes into the remote branch. If someone else is working on your branch, use the less destructive `--force-with-lease`.
-  ```sh
-  git push -f
-  ```
-  _Why:_
-  > When you do a rebase, you are changing the history on your feature branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag. [read more...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
-- Make a Pull Request.
-- Pull request will be accepted, merged and close by a reviewer.
-- Remove your local feature branch if you're done.
-
-  ```sh
-  git branch -d <branchname>
-  ```
-
-  to remove all branches which are no longer on remote
-
-  ```sh
-  git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
-  ```
-
-<a name="writing-good-commit-messages"></a>
+Q:: What are the final steps after your Pull Request has been accepted, merged, and closed?
+A:: The final steps are:
+1. Remove your local feature branch if you're done:
+```sh
+git branch -d <branchname>
+```
+2. To remove all branches which are no longer on remote:
+```sh
+git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
+```
 
 ### 1.3 Writing good commit messages
 
-Having a good guideline for creating commits and sticking to it makes working with Git and collaborating with others a lot easier. Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+Q:: How should you structure your commit message?
+A:: You should separate the subject from the body with a newline between the two. Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only.
 
-- Separate the subject from the body with a newline between the two.
+Q:: (Cloze) When writing a commit message, limit the subject line to {{c1::50 characters}} and wrap the body at {{c2::72 characters}}.
+A:: (Cloze) Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [read more...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
-  _Why:_
+Q:: What are the rules for formatting the subject line of a commit message?
+A:: The rules for formatting the subject line of a commit message are:
+1. Capitalize the subject line.
+2. Do not end the subject line with a period.
+3. Use imperative mood in the subject line.
 
-  > Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only.
+Q:: Why should you use imperative mood in the subject line of a commit message?
+A:: Rather than writing messages that say what a committer has done, it's better to consider these messages as the instructions for what is going to be done after the commit is applied on the repository. [read more...](https://news.ycombinator.com/item?id=2079612)
 
-- Limit the subject line to 50 characters and Wrap the body at 72 characters.
-
-  _why_
-
-  > Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [read more...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
-
-- Capitalize the subject line.
-- Do not end the subject line with a period.
-- Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line.
-
-  _Why:_
-
-  > Rather than writing messages that say what a committer has done. It's better to consider these messages as the instructions for what is going to be done after the commit is applied on the repository. [read more...](https://news.ycombinator.com/item?id=2079612)
-
-- Use the body to explain **what** and **why** as opposed to **how**.
-
-<a name="documentation"></a>
+Q:: What should be the focus of the body of a commit message?
+A:: Use the body to explain **what** and **why** as opposed to **how**.
 
 #### Chapter 2 - Documentation
 
 ![Documentation](/images/documentation.png)
 
-- Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
-- For projects with more than one repository, provide links to them in their respective `README.md` files.
-- Keep `README.md` updated as a project evolves.
-- Comment your code. Try to make it as clear as possible what you are intending with each major section.
-- If there is an open discussion on GitHub or stackoverflow about the code or approach you're using, include the link in your comment.
-- Don't use comments as an excuse for a bad code. Keep your code clean.
-- Don't use clean code as an excuse to not comment at all.
-- Keep comments relevant as your code evolves.
+Q:: What template should be used for creating a README.md file?
+A:: Use this [template](./README.sample.md) for `README.md`. Feel free to add uncovered sections as needed.
 
-<a name="environments"></a>
+Q:: How should documentation be handled for projects with multiple repositories?
+A:: For projects with more than one repository, provide links to them in their respective `README.md` files.
+
+Q:: (Cloze) The {{c1::README.md}} file should be {{c2::kept updated}} as the project {{c3::evolves}}.
+A:: (Cloze) This ensures that the documentation remains relevant and useful throughout the project's lifecycle.
+
+Q:: What is the primary purpose of commenting your code?
+A:: Comment your code to make it as clear as possible what you are intending with each major section.
+
+Q:: When should you include links to external discussions in your code comments?
+A:: If there is an open discussion on GitHub or stackoverflow about the code or approach you're using, include the link in your comment.
+
+Q:: (Cloze) Comments should not be used as an {{c1::excuse for bad code}}. Instead, you should {{c2::keep your code clean}}.
+A:: (Cloze) This emphasizes the importance of writing clear, readable code rather than relying on comments to explain poorly written code.
+
+Q:: What is the relationship between clean code and comments?
+A:: Don't use clean code as an excuse to not comment at all. While code should be clean and readable, comments are still necessary to provide context and explain complex logic.
+
+Q:: How should comments be maintained over time?
+A:: Keep comments relevant as your code evolves. This means updating or removing comments that no longer accurately describe the code they're associated with.
 
 #### Chapter 3 - Environments
 
 ![Environments](/images/laptop.png)
 
-- Define separate `development`, `test` and `production` environments if needed.
+Q:: What are the three main environments typically defined in a project?
+A:: The three main environments typically defined are `development`, `test`, and `production`.
 
-  _Why:_
+Q:: Why is it important to define separate environments?
+A:: Different environments may need different data, tokens, APIs, ports, etc. For example, you may want an isolated `development` mode that calls a fake API returning predictable data for easier testing, or enable Google Analytics only in `production`. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
-  > Different data, tokens, APIs, ports etc... might be needed in different environments. You may want an isolated `development` mode that calls fake API which returns predictable data, making both automated and manual testing much easier. Or you may want to enable Google Analytics only on `production` and so on. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+Q:: (Cloze) Deployment-specific configurations should be loaded from {{c1::environment variables}} and never added to the codebase as {{c2::constants}}.
+A:: (Cloze) This is because you have tokens, passwords, and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
 
-- Load your deployment specific configurations from environment variables and never add them to the codebase as constants, [look at this sample](./config.sample.js).
+Q:: How should environment variables be managed in a project?
+A:: Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example` which serves as a guide for developers. For production, you should still set your environment variables in the standard way. [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
-  _Why:_
+Q:: Why is it recommended to validate environment variables before the app starts?
+A:: It may save others from hours of troubleshooting. You can use tools like `joi` to validate provided values. [Look at this sample](./configWithTest.sample.js)
 
-  > You have tokens, passwords and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
+Q:: (Cloze) To specify the node version for a project, set it in the {{c1::engines}} field of {{c2::package.json}}.
+A:: (Cloze) This lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
 
-  _How:_
+Q:: What is the purpose of using `nvm` and creating a `.nvmrc` file?
+A:: Using `nvm` and creating a `.nvmrc` file allows anyone who uses `nvm` to simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
 
-  > `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example` which serves as a guide for developers. For production, you should still set your environment variables in the standard way.
-  > [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+Q:: Why might you set up a `preinstall` script in your project?
+A:: It's a good idea to set up a `preinstall` script that checks node and npm versions because some dependencies may fail when installed by newer versions of npm.
 
-- It’s recommended to validate environment variables before your app starts. [Look at this sample](./configWithTest.sample.js) using `joi` to validate provided values.
-  _Why:_
-  > It may save others from hours of troubleshooting.
+Q:: What are the advantages of using Docker in a project?
+A:: Using Docker can give you a consistent environment across the entire workflow, without much need to fiddle with dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
-<a name="consistent-dev-environments"></a>
+Q:: Why is it recommended to use local modules instead of globally installed modules?
+A:: Using local modules lets you share your tooling with your colleagues instead of expecting them to have it globally on their systems.
 
-### 3.1 Consistent dev environments:
+Q:: (Cloze) To ensure consistent dependencies across a team, use {{c1::package-lock.json}} on {{c2::npm@5}} or higher, or alternatively use {{c3::Yarn}}.
+A:: (Cloze) This ensures that team members get the exact same dependencies, making the code behave as expected and identical in any development machine. [read more...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 
-- Set your node version in `engines` in `package.json`.
-
-  _Why:_
-
-  > It lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
-
-- Additionally, use `nvm` and create a `.nvmrc` in your project root. Don't forget to mention it in the documentation.
-
-  _Why:_
-
-  > Any one who uses `nvm` can simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
-
-- It's a good idea to setup a `preinstall` script that checks node and npm versions.
-
-  _Why:_
-
-  > Some dependencies may fail when installed by newer versions of npm.
-
-- Use Docker image if you can.
-
-  _Why:_
-
-  > It can give you a consistent environment across the entire workflow. Without much need to fiddle with dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
-
-- Use local modules instead of using globally installed modules.
-
-  _Why:_
-
-  > Lets you share your tooling with your colleague instead of expecting them to have it globally on their systems.
-
-<a name="consistent-dependencies"></a>
-
-### 3.2 Consistent dependencies:
-
-- Make sure your team members get the exact same dependencies as you.
-
-  _Why:_
-
-  > Because you want the code to behave as expected and identical in any development machine [read more...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
-
-  _how:_
-
-  > Use `package-lock.json` on `npm@5` or higher
-
-  _I don't have npm@5:_
-
-  > Alternatively you can use `Yarn` and make sure to mention it in `README.md`. Your lock file and `package.json` should have the same versions after each dependency update. [read more...](https://yarnpkg.com/en/)
-
-  _I don't like the name `Yarn`:_
-
-  > Too bad. For older versions of `npm`, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [read more...](https://docs.npmjs.com/files/package-locks)
-
-<a name="dependencies"></a>
+Q:: For older versions of npm, how can you ensure consistent dependencies?
+A:: For older versions of npm, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [read more...](https://docs.npmjs.com/files/package-locks)
 
 #### Chapter 4 - Dependencies
 
 ![Github](/images/modules.png)
 
-- Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
-- See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
+Q:: How can you keep track of your currently available packages in npm?
+A:: You can use the command `npm ls --depth=0` to list your currently available packages. [read more...](https://docs.npmjs.com/cli/ls)
 
-  _Why:_
+Q:: What tool can be used to check for unused or irrelevant packages in your project?
+A:: You can use the `depcheck` tool to see if any of your packages have become unused or irrelevant. [read more...](https://www.npmjs.com/package/depcheck)
 
-  > You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.
+Q:: Why is it important to find and remove unused dependencies?
+A:: You may include an unused library in your code and increase the production bundle size. Finding unused dependencies and getting rid of them helps optimize your project.
 
-- Before using a dependency, check its download statistics to see if it is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
+Q:: What should you check before using an npm dependency?  
+A:: Before using a dependency, check its version release frequency, number of maintainers, and download statistics to see if it is heavily used by the community. You can use commands like `npm view async` or tools like `npm-stat` to get this information. More usage often means more contributors, better maintenance, and faster bug fixes. 
 
-  _Why:_
+- [npm view async](https://docs.npmjs.com/cli/view) 
+- [npm-stat](https://npm-stat.com/)
 
-  > More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.
+Q:: Why is it important to consider the maintainer activity of a dependency?
+A:: Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
 
-- Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
+Q:: What should you do if you need to use a less known dependency?
+A:: If a less known dependency is needed, discuss it with the team before using it.
 
-  _Why:_
+Q:: (Cloze) To ensure your app works with the latest version of its dependencies without breaking, use the command {{c1::npm outdated}}.
+A:: (Cloze) This helps you stay up-to-date with dependency updates, which sometimes contain breaking changes. [read more...](https://docs.npmjs.com/cli/outdated)
 
-  > Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
+Q:: Why should you update dependencies one by one?
+A:: Updating dependencies one by one makes troubleshooting easier if anything goes wrong.
 
-- If a less known dependency is needed, discuss it with the team before using it.
-- Always make sure your app works with the latest version of its dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
+Q:: What tool can be used to facilitate updating npm packages?
+A:: You can use a tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates) to facilitate updating npm packages.
 
-  _Why:_
+Q:: How can you check if a package has known security vulnerabilities?
+A:: You can check for known security vulnerabilities in packages using tools like [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
-  > Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
-
-- Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
-
-<a name="testing"></a>
+Q:: (Cloze) When updating dependencies, it's important to always check their {{c1::release notes}} when updates show up to be aware of potential {{c2::breaking changes}}.
+A:: (Cloze) This practice helps you anticipate and address any issues that might arise from updating dependencies.
 
 #### Chapter 5 - Testing
 
