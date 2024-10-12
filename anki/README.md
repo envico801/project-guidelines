@@ -236,216 +236,168 @@ A:: (Cloze) This practice helps you anticipate and address any issues that might
 
 ![Testing](/images/testing.png)
 
-- Have a `test` mode environment if needed.
+Q:: Why might you need a separate `test` mode environment?
+A:: A separate `test` mode environment can be useful because:
+1. You may not want to enable analytical information in 'production' mode and pollute someone's dashboard with test data.
+2. Your API may have rate limits in `production` that could block your test calls after a certain amount of requests.
 
-  _Why:_
+Q:: (Cloze) Test files should be placed {{c1::next to the tested modules}} using the naming convention {{c2::*.test.js}} or {{c3::*.spec.js}}.
+A:: (Cloze) This placement ensures you don't have to dig through a folder structure to find a unit test. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
-  > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after a certain amount of requests.
+Q:: Where should additional test files that don't relate to specific implementation files be placed?
+A:: Additional test files that don't particularly relate to any specific implementation file should be put in a separate test folder, typically named `__test__`, to avoid confusion.
 
-- Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`.
+Q:: Why is the `__test__` folder name considered standard?
+A:: The name `__test__` is considered standard and gets picked up by most JavaScript testing frameworks.
 
-  _Why:_
+Q:: What are the characteristics of testable code?
+A:: Testable code should:
+1. Avoid side effects
+2. Extract side effects
+3. Use pure functions
 
-  > You don't want to dig through a folder structure to find a unit test. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+Q:: (Cloze) A {{c1::pure function}} is a function that always returns the {{c2::same output}} for the {{c3::same input}}.
+A:: (Cloze) Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value, making it less predictable. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
-- Put your additional test files into a separate test folder to avoid confusion.
+Q:: Why is it important to write testable code with pure functions?
+A:: Writing testable code with pure functions allows you to:
+1. Test business logic as separate units
+2. Minimize the impact of randomness and nondeterministic processes on the reliability of your code
+[read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
 
-  _Why:_
+Q:: What is the benefit of using a static type checker?
+A:: A static type checker brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
-  > Some test files don't particularly relate to any specific implementation file. You have to put it in a folder that is most likely to be found by other developers: `__test__` folder. This name: `__test__` is also standard now and gets picked up by most JavaScript testing frameworks.
+Q:: When should you run tests in relation to making pull requests?
+A:: You should run tests locally before making any pull requests to `develop`.
 
-- Write testable code, avoid side effects, extract side effects, write pure functions
+Q:: Why is it important to run tests before pushing to a remote repository?
+A:: Running tests after your `rebase` and before pushing your feature-branch to a remote repository ensures that you don't cause the production-ready branch build to fail.
 
-  _Why:_
-
-  > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
-
-  > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
-
-- Use a static type checker
-
-  _Why:_
-
-  > Sometimes you may need a Static type checker. It brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
-
-- Run tests locally before making any pull requests to `develop`.
-
-  _Why:_
-
-  > You don't want to be the one who caused production-ready branch build to fail. Run your tests after your `rebase` and before pushing your feature-branch to a remote repository.
-
-- Document your tests including instructions in the relevant section of your `README.md` file.
-
-  _Why:_
-
-  > It's a handy note you leave behind for other developers or DevOps experts or QA or anyone who gets lucky enough to work on your code.
-
-<a name="structure-and-naming"></a>
+Q:: Why is it important to document your tests?
+A:: Documenting your tests provides valuable information for other developers, DevOps experts, QA, or anyone who may work on your code in the future, making it easier for them to understand and run the tests.
 
 #### Chapter 6 - Structure and Naming
 
 ![Structure and Naming](/images/folder-tree.png)
 
-- Organize your files around product features / pages / components, not roles. Also, place your test files next to their implementation.
+Q:: How should files be organized in a project structure?
+A:: Files should be organized around product features / pages / components, not roles. Test files should be placed next to their implementation.
 
-  **Bad**
+**Bad**
 
-  ```
-  .
-  ├── controllers
-  |   ├── product.js
-  |   └── user.js
-  ├── models
-  |   ├── product.js
-  |   └── user.js
-  ```
+```
+.
+├── controllers
+|   ├── product.js
+|   └── user.js
+├── models
+|   ├── product.js
+|   └── user.js
+```
 
-  **Good**
+**Good**
 
-  ```
-  .
-  ├── product
-  |   ├── index.js
-  |   ├── product.js
-  |   └── product.test.js
-  ├── user
-  |   ├── index.js
-  |   ├── user.js
-  |   └── user.test.js
-  ```
+```
+.
+├── product
+|   ├── index.js
+|   ├── product.js
+|   └── product.test.js
+├── user
+|   ├── index.js
+|   ├── user.js
+|   └── user.test.js
+```
 
-  _Why:_
+Q:: (Cloze) In a well-organized project structure, you should create {{c1::small modules}} that {{c2::encapsulate one responsibility}} including its {{c3::test}}.
+A:: (Cloze) This organization makes it much easier to navigate through the project and find things at a glance, instead of dealing with a long list of files.
 
-  > Instead of a long list of files, you will create small modules that encapsulate one responsibility including its test and so on. It gets much easier to navigate through and things can be found at a glance.
+Q:: Where should additional test files be placed?
+A:: Additional test files should be put in a separate test folder to avoid confusion.
 
-- Put your additional test files to a separate test folder to avoid confusion.
+Q:: Why is it beneficial to have a separate test folder for additional test files?
+A:: It is a time saver for other developers or DevOps experts in your team.
 
-  _Why:_
+Q:: (Cloze) Config files should be placed in a {{c1::./config}} folder, and you should {{c2::not make different config files}} for {{c3::different environments}}.
+A:: (Cloze) This approach makes sense when breaking down config files for different purposes (database, API, etc.). It's important to remember that creating different config files for different environments doesn't scale cleanly as more deploys of the app are created.
 
-  > It is a time saver for other developers or DevOps experts in your team.
+Q:: How should values for config files be provided?
+A:: Values to be used in config files should be provided by environment variables. [read more...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
 
-- Use a `./config` folder and don't make different config files for different environments.
+Q:: Where should scripts be placed in the project structure?
+A:: Scripts, including bash and node scripts, should be put in a `./scripts` folder.
 
-  _Why:_
+Q:: Why is it recommended to have a separate folder for scripts?
+A:: It's very likely you may end up with more than one script, such as production build, development build, database feeders, database synchronization, and so on.
 
-  > When you break down a config file for different purposes (database, API and so on); putting them in a folder with a very recognizable name such as `config` makes sense. Just remember not to make different config files for different environments. It doesn't scale cleanly, as more deploys of the app are created, new environment names are necessary.
-  > Values to be used in config files should be provided by environment variables. [read more...](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
+Q:: (Cloze) Build output should be placed in a {{c1::./build}} folder, and {{c2::build/}} should be added to {{c3::.gitignore}}.
+A:: (Cloze) The build folder (which can also be named 'dist') contains generated (bundled, compiled, transpiled) or moved files. These files don't need to be committed to the remote repository as they can be generated by team members.
 
-- Put your scripts in a `./scripts` folder. This includes `bash` and `node` scripts.
-
-  _Why:_
-
-  > It's very likely you may end up with more than one script, production build, development build, database feeders, database synchronization and so on.
-
-- Place your build output in a `./build` folder. Add `build/` to `.gitignore`.
-
-  _Why:_
-
-  > Name it what you like, `dist` is also cool. But make sure that keep it consistent with your team. What gets in there is most likely generated (bundled, compiled, transpiled) or moved there. What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to.
-
-<a name="code-style"></a>
+Q:: Why shouldn't build output be committed to the remote repository?
+A:: What you can generate, your teammates should be able to generate too, so there is no point committing them into your remote repository. Unless you specifically want to.
 
 #### Chapter 7 - Code style
 
 ![Code style](/images/code-style.png)
 
-<a name="code-style-check"></a>
-
 ### 7.1 Some code style guidelines
 
-- Use stage-2 and higher JavaScript (modern) syntax for new projects. For old project stay consistent with existing syntax unless you intend to modernise the project.
+Q:: What JavaScript syntax is recommended for new projects?
+A:: Use stage-2 and higher JavaScript (modern) syntax for new projects. For old projects, stay consistent with existing syntax unless you intend to modernize the project.
 
-  _Why:_
+Q:: Why is it recommended to use stage-2 and higher JavaScript syntax?
+A:: Stage-2 syntax is more likely to eventually become part of the spec with only minor revisions. Transpilers can be used to take advantage of new syntax features.
 
-  > This is all up to you. We use transpilers to use advantages of new syntax. stage-2 is more likely to eventually become part of the spec with only minor revisions.
+Q:: (Cloze) Code style checks should be included in your {{c1::build process}}.
+A:: (Cloze) Breaking your build is one way of enforcing code style. It prevents you from taking it less seriously. Do it for both client and server-side code. [read more...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
-- Include code style check in your build process.
+Q:: What tool is recommended to enforce code style in JavaScript?
+A:: [ESLint - Pluggable JavaScript linter](http://eslint.org/) is recommended to enforce code style.
 
-  _Why:_
+Q:: Why is ESLint preferred for enforcing code style?
+A:: ESLint has more rules supported, the ability to configure the rules, and the ability to add custom rules.
 
-  > Breaking your build is one way of enforcing code style to your code. It prevents you from taking it less seriously. Do it for both client and server-side code. [read more...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+Q:: Which JavaScript Style Guide is recommended?
+A:: The [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) is recommended.
 
-- Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style.
+Q:: (Cloze) For projects using {{c1::FlowType}}, it's recommended to use {{c2::Flow type style check rules}} for {{c3::ESLint}}.
+A:: (Cloze) Flow introduces few syntaxes that also need to follow certain code style and be checked.
 
-  _Why:_
+Q:: What is the purpose of using a `.eslintignore` file?
+A:: The `.eslintignore` file is used to exclude files or folders from code style checks without polluting your code with `eslint-disable` comments.
 
-  > We simply prefer `eslint`, you don't have to. It has more rules supported, the ability to configure the rules, and ability to add custom rules.
+Q:: What should be done with `eslint` disable comments before making a Pull Request?
+A:: Remove any of your `eslint` disable comments before making a Pull Request.
 
-- We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) for JavaScript, [Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details). Use the javascript style guide required by the project or your team.
+Q:: How should small tasks be marked in the code?
+A:: Use `//TODO:` comments for small tasks. For larger tasks, use `//TODO(#3456)` where the number is an open ticket.
 
-- We use [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype) when using [FlowType](https://flow.org/).
+Q:: (Cloze) Comments should be {{c1::kept relevant}} as code changes, and {{c2::commented blocks of code}} should be {{c3::removed}}.
+A:: (Cloze) Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
 
-  _Why:_
+Q:: Why should irrelevant or funny comments, logs, or naming be avoided?
+A:: While your build process may (should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
 
-  > Flow introduces few syntaxes that also need to follow certain code style and be checked.
+Q:: What guidelines are given for naming functions?
+A:: For functions, use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
 
-- Use `.eslintignore` to exclude files or folders from code style checks.
-
-  _Why:_
-
-  > You don't have to pollute your code with `eslint-disable` comments whenever you need to exclude a couple of files from style checking.
-
-- Remove any of your `eslint` disable comments before making a Pull Request.
-
-  _Why:_
-
-  > It's normal to disable style check while working on a code block to focus more on the logic. Just remember to remove those `eslint-disable` comments and follow the rules.
-
-- Depending on the size of the task use `//TODO:` comments or open a ticket.
-
-  _Why:_
-
-  > So then you can remind yourself and others about a small task (like refactoring a function or updating a comment). For larger tasks use `//TODO(#3456)` which is enforced by a lint rule and the number is an open ticket.
-
-- Always comment and keep them relevant as code changes. Remove commented blocks of code.
-
-  _Why:_
-
-  > Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
-
-- Avoid irrelevant or funny comments, logs or naming.
-
-  _Why:_
-
-  > While your build process may(should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
-
-- Make your names search-able with meaningful distinctions avoid shortened names. For functions use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
-
-  _Why:_
-
-  > It makes it more natural to read the source code.
-
-- Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
-
-  _Why:_
-
-  > It makes it more natural to read the source code.
-
-<a name="enforcing-code-style-standards"></a>
+Q:: How should functions be organized in a file?
+A:: Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
 
 ### 7.2 Enforcing code style standards
 
-- Use a [.editorconfig](http://editorconfig.org/) file which helps developers define and maintain consistent coding styles between different editors and IDEs on the project.
+Q:: What is the purpose of using a .editorconfig file in a project?
+A:: A .editorconfig file helps developers define and maintain consistent coding styles between different editors and IDEs on the project. The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
 
-  _Why:_
+Q:: How can you make your editor notify you about code style errors?
+A:: Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [Read more...](https://github.com/prettier/eslint-config-prettier#installation)
 
-  > The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
+Q:: Why should you consider using Git hooks?
+A:: Git hooks greatly increase a developer's productivity. They allow you to make changes, commit and push to staging or production environments without the fear of breaking builds. [Read more...](http://githooks.com/)
 
-- Have your editor notify you about code style errors. Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [read more...](https://github.com/prettier/eslint-config-prettier#installation)
-
-- Consider using Git hooks.
-
-  _Why:_
-
-  > Git hooks greatly increase a developer's productivity. Make changes, commit and push to staging or production environments without the fear of breaking builds. [read more...](http://githooks.com/)
-
-- Use Prettier with a precommit hook.
-
-  _Why:_
-
-  > While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. This is where `lint-staged` (and `husky`) come into play. Read more on configuring `lint-staged` [here](https://github.com/okonet/lint-staged#configuration) and on configuring `husky` [here](https://github.com/typicode/husky).
-
-<a name="logging"></a>
+Q:: What is the benefit of using Prettier with a precommit hook?
+A:: While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. Using Prettier with a precommit hook, along with `lint-staged` and `husky`, can greatly enhance productivity. [Read more about configuring `lint-staged` here](https://github.com/okonet/lint-staged#configuration) and [configuring `husky` here](https://github.com/typicode/husky).
 
 #### Chapter 8 - Logging
 
