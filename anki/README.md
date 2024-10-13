@@ -403,19 +403,14 @@ A:: While `prettier` itself can be very powerful, it's not very productive to ru
 
 ![Logging](/images/logging.png)
 
-- Avoid client-side console logs in production
+Q:: Why should you avoid client-side console logs in production?
+A:: Even though your build process can (and should) get rid of them, it's important to ensure that your code style checker warns you about leftover console logs. This helps prevent unintended logging in production environments.
 
-  _Why:_
+Q:: What is the recommended approach for production logging?
+A:: It's recommended to use logging libraries for production mode, such as [winston](https://github.com/winstonjs/winston) or [node-bunyan](https://github.com/trentm/node-bunyan). These libraries help produce readable production logging.
 
-  > Even though your build process can (should) get rid of them, make sure that your code style checker warns you about leftover console logs.
-
-- Produce readable production logging. Ideally use logging libraries to be used in production mode (such as [winston](https://github.com/winstonjs/winston) or
-  [node-bunyan](https://github.com/trentm/node-bunyan)).
-
-      _Why:_
-      > It makes your troubleshooting less unpleasant with colorization, timestamps, log to a file in addition to the console or even logging to a file that rotates daily. [read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
-
-<a name="api"></a>
+Q:: What are the benefits of using logging libraries in production?
+A:: Using logging libraries makes troubleshooting less unpleasant by providing features such as colorization, timestamps, logging to a file in addition to the console, or even logging to a file that rotates daily. [Read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
 
 #### Chapter 9 - API
 
@@ -423,289 +418,263 @@ A:: While `prettier` itself can be very powerful, it's not very productive to ru
 
 ![API](/images/api.png)
 
-### 9.1 API design
+Q:: What are the three main factors in resource-oriented design for APIs?
+A:: The three main factors in resource-oriented design are:
+1. Resources (which have data, can be nested, and have methods that operate against them)
+2. Collections (groups of resources)
+3. URLs (which identify the online location of resources or collections)
+
+Q:: Why is resource-oriented design beneficial for API development?
+A:: Resource-oriented design is beneficial because:
+1. It's well-known to developers (the main API consumers)
+2. It offers readability and ease of use
+3. It allows for writing generic libraries and connectors without knowing the specifics of the API
+
+Q:: What case should be used for URLs and resource names in API design?
+A:: Use kebab-case for URLs and plural kebab-case for resource names in URLs.
+
+Q:: What case should be used for parameters in the query string or resource fields?
+A:: Use camelCase for parameters in the query string or resource fields.
+
+Q:: Why should plural nouns be used for naming URLs pointing to collections?
+A:: Plural nouns should be used for naming URLs pointing to collections (e.g., `/users`) because it reads better and keeps URLs consistent. [Read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+
+Q:: How should plurals be handled in source code for variables and properties?
+A:: In the source code, convert plurals to variables and properties with a List suffix. This is because plural is nice in the URL, but in the source code, it's too subtle and error-prone.
+
+Q:: What is the recommended format for URLs pointing to a specific resource?
+A:: Always use a singular concept that starts with a collection and ends with an identifier, for example:
+```
+/students/245743
+/airports/kjfk
+```
+
+Avoid URLs like this:
+
+```
+GET /blogs/:blogId/posts/:postId/summary
+```
 
 _Why:_
 
-> Because we try to enforce development of sanely constructed RESTful interfaces, which team members and clients can consume simply and consistently.
+> This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
+
+Q:: (Cloze) In API design, it's recommended to keep {{c1::verbs}} out of your {{c2::resource URLs}} because using a verb for each resource operation can lead to {{c3::a huge list of URLs}} and {{c4::no consistent pattern}}.
+A:: (Cloze) This makes it difficult for developers to learn the API. Verbs are used for something else in API design.
+
+Q:: When is it appropriate to use verbs in API URLs?
+A:: Use verbs for non-resources, when your API doesn't return any resources but instead executes an operation and returns the result. These are not CRUD operations. For example:
+```
+/translate?text=Hallo
+```
 
 _Why:_
 
-> Lack of consistency and simplicity can massively increase integration and maintenance costs. Which is why `API design` is included in this document.
+> Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
-- We mostly follow resource-oriented design. It has three main factors: resources, collection, and URLs.
+Q:: What case should be used for JSON property names in request bodies or response types?
+A:: Follow `camelCase` for `JSON` property names in request bodies or response types to maintain consistency. This is because these guidelines assume JavaScript is used for generating and parsing JSON.
 
-  - A resource has data, gets nested, and there are methods that operate against it.
-  - A group of resources is called a collection.
-  - URL identifies the online location of resource or collection.
+Q:: Why should you avoid using table_name for a resource name and column_name for resource properties in API design?
+A:: Because your intention is to expose Resources, not your database schema details. This abstraction helps maintain separation between your API design and database structure.
 
-  _Why:_
+Q:: How should CRUD functionalities be explained using HTTP methods in API design?
+A:: CRUD functionalities should be explained using HTTP methods as follows:
+- GET: To retrieve a representation of a resource
+- POST: To create new resources and sub-resources
+- PUT: To update existing resources
+- PATCH: To update existing resources, only updating the fields that were supplied
+- DELETE: To delete existing resources
 
-  > This is a very well-known design to developers (your main API consumers). Apart from readability and ease of use, it allows us to write generic libraries and connectors without even knowing what the API is about.
+Q:: How should nested resources be represented in API URLs?
+A:: For nested resources, use the relation between them in the URL. For example:
 
-- use kebab-case for URLs.
-- use camelCase for parameters in the query string or resource fields.
-- use plural kebab-case for resource names in URLs.
+> `GET /schools/2/students ` , should get the list of all students from school 2.
 
-- Always use a plural nouns for naming a url pointing to a collection: `/users`.
+> `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
 
-  _Why:_
+> `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
 
-  > Basically, it reads better and keeps URLs consistent. [read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+> `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
 
-- In the source code convert plurals to variables and properties with a List suffix.
+> `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
 
-  _Why_:
+Q:: What is the recommended approach for versioning APIs in the URL?
+A:: Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope. For example:
+```
+http://api.domain.com/v1/schools/3/students
+```
+_Why:_
 
-  > Plural is nice in the URL but in the source code, it’s just too subtle and error-prone.
+> When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
-- Always use a singular concept that starts with a collection and ends to an identifier:
+Q:: (Cloze) A good error message response in an API should include a {{c1::code}}, a {{c2::message}}, and a {{c3::description}}. For validation errors, it should also include an {{c4::errors}} array with details for each error.
+A:: (Cloze) This structure helps developers troubleshoot and resolve issues when using your APIs.
 
-  ```
-  /students/245743
-  /airports/kjfk
-  ```
+A good error message response might look something like this:
 
-- Avoid URLs like this:
+```json
+{
+  "code": 1234,
+  "message": "Something bad happened",
+  "description": "More details"
+}
+```
 
-  ```
-  GET /blogs/:blogId/posts/:postId/summary
-  ```
+or for validation errors:
 
-  _Why:_
+```json
+{
+  "code": 2314,
+  "message": "Validation Failed",
+  "errors": [
+    {
+      "code": 1233,
+      "field": "email",
+      "message": "Invalid email"
+    },
+    {
+      "code": 1234,
+      "field": "password",
+      "message": "No password provided"
+    }
+  ]
+}
+```
 
-  > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
+Q:: What are some important HTTP status codes to use in API responses, and what do they indicate?
+A:: Some important HTTP status codes include:
+> `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
-- Keep verbs out of your resource URLs.
+> `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
 
-  _Why:_
+> `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
 
-  > Because if you use a verb for each resource operation you soon will have a huge list of URLs and no consistent pattern which makes it difficult for developers to learn. Plus we use verbs for something else.
+> `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
 
-- Use verbs for non-resources. In this case, your API doesn't return any resources. Instead, you execute an operation and return the result. These **are not** CRUD (create, retrieve, update, and delete) operations:
+> `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
 
-  ```
-  /translate?text=Hallo
-  ```
+> `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
 
-  _Why:_
+> `403 Forbidden` means the server understood the request but refuses to authorize it.
 
-  > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
+> `404 Not Found` indicates that the requested resource was not found.
 
-- The request body or response type is JSON then please follow `camelCase` for `JSON` property names to maintain the consistency.
+> `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
 
-  _Why:_
+Q:: How can you limit the amount of data returned in an API response?
+A:: Use a fields query parameter that takes a comma-separated list of fields to include. For example:
+```
+GET /students?fields=id,name,age,class
+```
 
-  > This is a JavaScript project guideline, where the programming language for generating and parsing JSON is assumed to be JavaScript.
+Q:: (Cloze) When designing APIs, it's recommended to provide {{c1::total numbers of resources}} in your response and accept {{c2::limit}} and {{c3::offset}} parameters for {{c4::pagination}}.
+A:: (Cloze) Additionally, filtering and sorting don't need to be supported from the start for all resources, but should be documented for resources that offer these features.
 
-- Even though a resource is a singular concept that is similar to an object instance or database record, you should not use your `table_name` for a resource name and `column_name` resource property.
+Q:: Why is it important to use common HTTP status codes in API responses?
+A:: Using common HTTP status codes is important because most developers don't have all 70+ HTTP status codes memorized. Using uncommon status codes might force developers to look up their meanings, disrupting their workflow. Most API providers use a small subset of HTTP status codes for clarity and ease of use. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
-  _Why:_
-
-  > Because your intention is to expose Resources, not your database schema details.
-
-- Again, only use nouns in your URL when naming your resources and don’t try to explain their functionality.
-
-  _Why:_
-
-  > Only use nouns in your resource URLs, avoid endpoints like `/addNewUser` or `/updateUser` . Also avoid sending resource operations as a parameter.
-
-- Explain the CRUD functionalities using HTTP methods:
-
-  _How:_
-
-  > `GET`: To retrieve a representation of a resource.
-
-  > `POST`: To create new resources and sub-resources.
-
-  > `PUT`: To update existing resources.
-
-  > `PATCH`: To update existing resources. It only updates the fields that were supplied, leaving the others alone.
-
-  > `DELETE`: To delete existing resources.
-
-- For nested resources, use the relation between them in the URL. For instance, using `id` to relate an employee to a company.
-
-  _Why:_
-
-  > This is a natural way to make resources explorable.
-
-  _How:_
-
-  > `GET /schools/2/students ` , should get the list of all students from school 2.
-
-  > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
-
-  > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
-
-  > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
-
-  > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
-
-- Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope:
-
-  ```
-  http://api.domain.com/v1/schools/3/students
-  ```
-
-  _Why:_
-
-  > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
-
-- Response messages must be self-descriptive. A good error message response might look something like this:
-
-  ```json
-  {
-    "code": 1234,
-    "message": "Something bad happened",
-    "description": "More details"
-  }
-  ```
-
-  or for validation errors:
-
-  ```json
-  {
-    "code": 2314,
-    "message": "Validation Failed",
-    "errors": [
-      {
-        "code": 1233,
-        "field": "email",
-        "message": "Invalid email"
-      },
-      {
-        "code": 1234,
-        "field": "password",
-        "message": "No password provided"
-      }
-    ]
-  }
-  ```
-
-  _Why:_
-
-  > developers depend on well-designed errors at the critical times when they are troubleshooting and resolving issues after the applications they've built using your APIs are in the hands of their users.
-
-  _Note: Keep security exception messages as generic as possible. For instance, Instead of saying ‘incorrect password’, you can reply back saying ‘invalid username or password’ so that we don’t unknowingly inform user that username was indeed correct and only the password was incorrect._
-
-- Use these status codes to send with your response to describe whether **everything worked**,
-  The **client app did something wrong** or The **API did something wrong**.
-
-      _Which ones:_
-      > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
-
-      > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
-
-      > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
-
-      > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
-
-      > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
-
-      > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
-
-      > `403 Forbidden` means the server understood the request but refuses to authorize it.
-
-      > `404 Not Found` indicates that the requested resource was not found.
-
-      > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
-
-      _Why:_
-      > Most API providers use a small subset HTTP status codes. For example, the Google GData API uses only 10 status codes, Netflix uses 9, and Digg, only 8. Of course, these responses contain a body with additional information. There are over 70 HTTP status codes. However, most developers don't have all 70 memorized. So if you choose status codes that are not very common you will force application developers away from building their apps and over to wikipedia to figure out what you're trying to tell them. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
-
-- Provide total numbers of resources in your response.
-- Accept `limit` and `offset` parameters.
-
-- The amount of data the resource exposes should also be taken into account. The API consumer doesn't always need the full representation of a resource. Use a fields query parameter that takes a comma separated list of fields to include:
-  ```
-  GET /students?fields=id,name,age,class
-  ```
-- Pagination, filtering, and sorting don’t need to be supported from start for all resources. Document those resources that offer filtering and sorting.
-
-<a name="api-security"></a>
+Q:: How should security exception messages be handled in API responses?
+A:: Keep security exception messages as generic as possible. For instance, instead of saying 'incorrect password', reply with 'invalid username or password'. This prevents unknowingly informing the user that the username was correct and only the password was incorrect.
 
 ### 9.2 API security
 
-These are some basic security best practices:
+Q:: Why should basic authentication not be used unless over a secure connection (HTTPS)?
+A:: Basic authentication should not be used without HTTPS because the token, user ID, and password are transmitted over the network as clear text (base64 encoded, which is reversible). This makes the basic authentication scheme insecure. [Read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
-- Don't use basic authentication unless over a secure connection (HTTPS). Authentication tokens must not be transmitted in the URL: `GET /users/123?token=asdf....`
+Q:: How should authentication tokens be transmitted in API requests?
+A:: Authentication tokens must be transmitted using the Authorization header on every request. For example: `Authorization: Bearer xxxxxx, Extra yyyyy`. They should not be transmitted in the URL.
 
-  _Why:_
+Q:: (Cloze) To enhance API security, {{c1::Authorization Code}} should be {{c2::short-lived}}, and any {{c3::non-TLS requests}} should be rejected by responding with {{c4::403 Forbidden}}.
+A:: (Cloze) These measures help protect against unauthorized access and insecure data exchange.
 
-  > Because Token, or user ID and password are passed over the network as clear text (it is base64 encoded, but base64 is a reversible encoding), the basic authentication scheme is not secure. [read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+Q:: Why is Rate Limiting important for API security?
+A:: Rate Limiting is important to protect your APIs from bot threats that may call your API thousands of times per hour. It's recommended to implement rate limiting early on in your API development process.
 
-- Tokens must be transmitted using the Authorization header on every request: `Authorization: Bearer xxxxxx, Extra yyyyy`.
+Q:: What should an API do with received data to ensure security?
+A:: An API should convert the received data to their canonical form or reject them. If there are any errors from bad or missing data, the API should return a 400 Bad Request status with details about the errors.
 
-- Authorization Code should be short-lived.
+Q:: Why is it important to serialize JSON in API responses?
+A:: Serializing JSON is crucial because a key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or on the server (if using node.js). Using a proper JSON serializer to encode user-supplied data properly prevents the execution of user-supplied input on the browser.
 
-- Reject any non-TLS requests by not responding to any HTTP request to avoid any insecure data exchange. Respond to HTTP requests by `403 Forbidden`.
+Q:: (Cloze) When validating the content-type in API requests, it's recommended to mostly use {{c1::application/*json}}. Accepting other mime types like {{c2::application/x-www-form-urlencoded}} could allow attackers to {{c3::create a form and trigger a simple POST request}}.
+A:: (Cloze) The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a 4XX response.
 
-- Consider using Rate Limiting.
+Q:: What security measures can be implemented through HTTP headers?
+A:: Setting HTTP headers appropriately can help to lock down and secure your web application. The Helmet project provides a set of security middleware for Express apps that can help set various HTTP headers. [Read more...](https://github.com/helmetjs/helmet)
 
-  _Why:_
+Q:: How should an API handle data validation?
+A:: All the data exchanged with the REST API must be validated by the API. This includes both incoming requests and outgoing responses to ensure data integrity and security.
 
-  > To protect your APIs from bot threats that call your API thousands of times per hour. You should consider implementing rate limit early on.
-
-- Setting HTTP headers appropriately can help to lock down and secure your web application. [read more...](https://github.com/helmetjs/helmet)
-
-- Your API should convert the received data to their canonical form or reject them. Return 400 Bad Request with details about any errors from bad or missing data.
-
-- All the data exchanged with the REST API must be validated by the API.
-
-- Serialize your JSON.
-
-  _Why:_
-
-  > A key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser... or, if you're using node.js, on the server. It's vital that you use a proper JSON serializer to encode user-supplied data properly to prevent the execution of user-supplied input on the browser.
-
-- Validate the content-type and mostly use `application/*json` (Content-Type header).
-
-  _Why:_
-
-  > For instance, accepting the `application/x-www-form-urlencoded` mime type allows the attacker to create a form and trigger a simple POST request. The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a `4XX` response.
-
-- Check the API Security Checklist Project. [read more...](https://github.com/shieldfy/API-Security-Checklist)
-
-<a name="api-documentation"></a>
+Q:: What additional resource can be consulted for a comprehensive API security checklist?
+A:: The API Security Checklist Project provides a comprehensive list of security best practices for API development. [Read more...](https://github.com/shieldfy/API-Security-Checklist)
 
 ### 9.3 API documentation
 
-- Fill the `API Reference` section in [README.md template](./README.sample.md) for API.
-- Describe API authentication methods with a code sample.
-- Explaining The URL Structure (path only, no root URL) including The request type (Method).
+Q:: What should be included in the API Reference section of the README.md file?
+A:: The API Reference section in the README.md file should include a comprehensive description of the API, including authentication methods, URL structure, request types, and details for each endpoint.
 
-For each endpoint explain:
+[README.md template](https://github.com/elsewhencode/project-guidelines/blob/master/README.sample.md)
 
-- URL Params If URL Params exist, specify them in accordance with name mentioned in URL section:
+Q:: How should API authentication methods be documented?
+A:: API authentication methods should be described with a code sample to demonstrate their proper usage.
 
-  ```
-  Required: id=[integer]
-  Optional: photo_id=[alphanumeric]
-  ```
+Q:: What information should be included when explaining the URL structure of an API?
+A:: When explaining the URL structure of an API, include the path (without the root URL) and the request type (Method) for each endpoint.
 
-- If the request type is POST, provide working examples. URL Params rules apply here too. Separate the section into Optional and Required.
+Q:: How should URL parameters be documented in API documentation?
+A:: URL parameters should be documented as follows:
+- Specify if they are Required or Optional
+- Provide the name and type of each parameter
+For example:
+```
+Required: id=[integer]
+Optional: photo_id=[alphanumeric]
+```
 
-- Success Response, What should be the status code and is there any return data? This is useful when people need to know what their callbacks should expect:
+Q:: (Cloze) For POST requests in API documentation, you should provide {{c1::working examples}} and separate the parameters into {{c2::Optional}} and {{c3::Required}} sections.
+A:: (Cloze) This helps users understand how to properly structure their POST requests to the API.
 
-  ```
-  Code: 200
-  Content: { id : 12 }
-  ```
+Q:: What information should be included in the Success Response section of API documentation?
+A:: The Success Response section should include:
+- The expected status code
+- Any return data
+For example:
+```
+Code: 200
+Content: { id : 12 }
+```
 
-- Error Response, Most endpoints have many ways to fail. From unauthorized access to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made. For example
+Q:: How should Error Responses be documented in API documentation?
+A:: Error Responses should be documented comprehensively, including:
+- All possible ways an endpoint can fail (e.g., unauthorized access, wrong parameters)
+- The error code, message, and description for each error case
+For example:
+```json
+{
+  "code": 401,
+  "message": "Authentication failed",
+  "description": "Invalid username or password"
+}
+```
 
-  ```json
-  {
-    "code": 401,
-    "message": "Authentication failed",
-    "description": "Invalid username or password"
-  }
-  ```
+Q:: Why is it important to document all possible error responses for an API endpoint?
+A:: Documenting all possible error responses helps prevent assumptions from being made by API users. Even if it seems repetitive, it provides clear expectations for all potential failure scenarios.
 
-- Use API design tools, There are lots of open source tools for good documentation such as [API Blueprint](https://apiblueprint.org/) and [Swagger](https://swagger.io/).
+Q:: (Cloze) Two popular open-source tools for API documentation are {{c1::API Blueprint}} and {{c2::Swagger}}.
+A:: (Cloze) These tools can help create good, standardized documentation for your API.
 
-<a name="a11y"></a>
+- [API Blueprint](https://apiblueprint.org/)
+- [Swagger](https://swagger.io/).
+
+Q:: What are the key components that should be explained for each API endpoint in the documentation?
+A:: For each API endpoint, the documentation should explain:
+1. The URL structure (path only, no root URL)
+2. The request type (Method)
+3. URL parameters (if any), specifying if they are required or optional
+4. Request body for POST requests, with examples
+5. Success response (status code and return data)
+6. Possible error responses (status codes, messages, and descriptions)
 
 #### Chapter 10 - Accessibility ([a11y](https://www.a11yproject.com/))
 
@@ -713,81 +682,74 @@ For each endpoint explain:
 
 ### 10.1 Laying accessibility practices in place
 
-Take the following steps **at the start of your project** to ensure an intentional level of accessibility is sustained:
+Q:: Why is it important to consider accessibility at the start of a web project?
+A:: Web content is accessible by default, but we often compromise this when building complex features. It's much easier to maintain accessibility by considering it from the start rather than re-implementing features later.
 
-_Why:_
+Q:: What tools are recommended for regular accessibility audits?
+A:: Two recommended tools for regular accessibility audits are:
+1. Lighthouse accessibility in Google Chrome DevTools
+2. The axe DevTools extension
 
-> Web content is [accessible by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML). We compromise this when we build complex features. It's much easier to reduce this impact by considering accessibility from the start rather than re-implement these features later.
+Q:: (Cloze) The scoring in accessibility audit tools like Lighthouse and axe is based on {{c1::axe user impact assessments}}.
+A:: (Cloze) These assessments help determine the severity and impact of accessibility issues.
 
-- Arrange to do regular audits using [lighthouse](https://developers.google.com/web/tools/lighthouse#devtools) [accessibility](https://web.dev/lighthouse-accessibility/) or the [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US). Agree on a minimum score based on your projects requirements. The scoring in both tools is based on [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules).
+Q:: What important accessibility checks must be done manually?
+A:: Some important accessibility checks that must be done manually include logical tab order. These are often listed as manual/guided tests alongside automated results in tools like Lighthouse and axe.
 
-  > **Note:** [some important checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check) must be done manually, e.g. logical tab order. The above tools list these as manual/guided tests alongside the automated results. With axe you have to save your automated results to view these.
+[Read more...](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check)
 
-- Install an a11y linter:
+Q:: What are some recommended accessibility linters for different frameworks?
+A:: Recommended accessibility linters for different frameworks include:
+- React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+- Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
+- Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
 
-  - React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
-  - Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
-  - Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+Q:: Why is it beneficial to use an accessibility linter in a project?
+A:: An accessibility linter automatically checks that a basic level of accessibility is met by your project and is relatively easy to set up.
 
-  _Why:_
+Q:: (Cloze) For accessibility testing, it's recommended to set up and use {{c1::[axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s)}} or similar tools. If using Storybook, you can implement {{c2::[accessibility testing with Storybook](https://storybook.js.org/blog/accessibility-testing-with-storybook/)}}.
+A:: (Cloze) Including accessibility checks in your tests helps catch any changes that affect your project's accessibility and audit score.
 
-  > A linter will automatically check that a basic level of accessibility is met by your project and is relatively easy to set up.
+Q:: What are some examples of accessible design systems?
+A:: Two examples of accessible design systems are:
+1. [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/)
+2. [Material Design](https://material.io/design)
 
-- Set up and use a11y testing using [axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s) or similar.
+Q:: Why is it beneficial to use an accessible design system?
+A:: Accessible design systems provide components that are highly accessible out of the box, making it easier to maintain accessibility throughout your project.
 
-- If you're using storybook, do [this](https://storybook.js.org/blog/accessibility-testing-with-storybook/).
-
-  _Why:_
-
-  > Including a11y checks in your tests will help you to catch any changes that affect your projects accessibility and your audit score.
-
-- Consider using an accessible design system such as [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/) or [Material Design](https://material.io/design).
-
-  _Why:_
-
-  > These components are highly accessible out of the box.
+Q:: What should be considered when agreeing on a minimum accessibility score for a project?
+A:: When agreeing on a minimum accessibility score, consider your project's specific requirements. The score should be based on the results from tools like Lighthouse or axe, which use axe user impact assessments to determine the severity of accessibility issues.
 
 ### 10.2 Some basic accessibility rules to add to your project:
 
-- Ensure link names are accessible. Use aria-label to describe links
+Q:: Why is it important to ensure link names are accessible?
+A:: Inaccessible link elements pose barriers to accessibility. Using aria-label to describe links can help make them more accessible to users relying on assistive technologies.
 
-  _Why:_
+Q:: How should lists be structured for accessibility?
+A:: Lists must have both parent and child elements to be valid. This is important because screen readers inform users when they come to a list and how many items are in the list.
 
-  > Inaccessible link elements pose barriers to accessibility.
+Q:: Why is the correct semantic structure of headings important for accessibility?
+A:: Headers convey the structure of the page. When applied correctly, the page becomes easier to navigate, especially for users relying on screen readers or other assistive technologies.
 
-- Ensure lists are structured correctly and list elements are used semantically.
+Q:: (Cloze) Ensuring text elements have {{c1::sufficient contrast}} against the page background is important because some people with {{c2::low vision}} experience {{c3::low contrast}}, making it difficult to distinguish {{c4::outlines, borders, edges, and details}}.
+A:: (Cloze) Text that is too close in luminance (brightness) to the background can be hard to read for these users.
 
-  _Why:_
+Q:: Why is it necessary to provide alternative text for images?
+A:: Screen readers have no way of translating an image into words that get read to the user, even if the image only consists of text. Therefore, it's necessary for images to have short, descriptive alt text so screen reader users can clearly understand the image's contents and purpose.
 
-  > Lists must have both parent and child elements for it to be valid. Screen readers inform users when they come to a list and how many items are in a list.
-
-- Ensure the heading order is semantically correct.
-
-  _Why:_
-
-  > Headers convey the structure of the page. When applied correctly the page becomes easier to navigate.
-
-- Ensure text elements have sufficient contrast against page background.
-
-  _Why:_
-
-  > Some people with low vision experience low contrast, meaning that there aren't very many bright or dark areas. Everything tends to appear about the same brightness, which makes it hard to distinguish outlines, borders, edges, and details. Text that is too close in luminance (brightness) to the background can be hard to read.
-
-- Provide alternative text for images.
-
-  _Why:_
-
-  > Screen readers have no way of translating an image into words that gets read to the user, even if the image only consists of text. As a result, it's necessary for images to have short, descriptive alt text so screen reader users clearly understand the image's contents and purpose.
-
-More accessibility rules can be found [here](https://dequeuniversity.com/rules/axe).
-
-<a name="licensing"></a>
+Q:: Where can more accessibility rules be found?
+A:: More accessibility rules can be found at [Deque University's axe rules](https://dequeuniversity.com/rules/axe).
 
 #### Chapter 11 - Licensing
 
 ![Licensing](/images/licensing.png)
 
-Make sure you use resources that you have the rights to use. If you use libraries, remember to look for MIT, Apache or BSD but if you modify them, then take a look at the license details. Copyrighted images and videos may cause legal problems.
+Q:: (Cloze) When using resources in your project, it's important to ensure you have the {{c1::rights to use}} them. For libraries, look for licenses such as {{c2::MIT}}, {{c3::Apache}}, or {{c4::BSD}}.
+A:: (Cloze) However, if you modify these libraries, you should review the license details carefully.
+
+Q:: What potential legal issues should be considered when using images and videos in a project?
+A:: Copyrighted images and videos may cause legal problems. It's important to ensure you have the right to use any visual content in your project.
 
 ---
 
