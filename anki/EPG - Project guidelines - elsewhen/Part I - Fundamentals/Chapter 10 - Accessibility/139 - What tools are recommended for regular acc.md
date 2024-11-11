@@ -17,9 +17,9 @@ Two recommended tools for regular accessibility audits are:
 
 DECK INFO
 
-TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility a11y https --www a11yproject com-
+TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility
 
-FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility-a11y-https-www-a11yproject-com-::#139-What-tools-are-recommended-for-regular-acc
+FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility::#139-What-tools-are-recommended-for-regular-acc
 
 Tags:
 

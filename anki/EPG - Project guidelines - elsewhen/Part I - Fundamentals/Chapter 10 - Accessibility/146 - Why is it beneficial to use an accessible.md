@@ -13,9 +13,9 @@ Accessible design systems provide components that are highly accessible out of t
 
 DECK INFO
 
-TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility a11y https --www a11yproject com-
+TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility
 
-FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility-a11y-https-www-a11yproject-com-::#146-Why-is-it-beneficial-to-use-an-accessible
+FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility::#146-Why-is-it-beneficial-to-use-an-accessible
 
 Tags:
 

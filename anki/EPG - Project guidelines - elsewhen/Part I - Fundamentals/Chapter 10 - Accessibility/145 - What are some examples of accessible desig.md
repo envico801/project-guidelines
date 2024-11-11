@@ -17,9 +17,9 @@ Two examples of accessible design systems are:
 
 DECK INFO
 
-TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility a11y https --www a11yproject com-
+TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility
 
-FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility-a11y-https-www-a11yproject-com-::#145-What-are-some-examples-of-accessible-desig
+FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility::#145-What-are-some-examples-of-accessible-desig
 
 Tags:
 

@@ -13,9 +13,9 @@
 
 DECK INFO
 
-TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility a11y https --www a11yproject com-
+TARGET DECK: Javascript::Coding best practices::EPG - Project guidelines - elsewhen::Part I - Fundamentals::Chapter 10 - Accessibility
 
-FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility-a11y-https-www-a11yproject-com-::#140-Cloze-the-scoring-in-accessibility-audit
+FILE TAGS: #Javascript::#Coding-best-practices::#EPG-Project-guidelines-elsewhen::#Part-I-Fundamentals::#Chapter-10-Accessibility::#140-Cloze-the-scoring-in-accessibility-audit
 
 Tags:
 
