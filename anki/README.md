@@ -1385,15 +1385,11 @@ For nested resources, use the relation between them in the URL. For example:
 
 > `GET /schools/2/students ` , should get the list of all students from school 2.
 
-
 > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
-
 
 > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
 
-
 > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
-
 
 > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
 
@@ -1467,30 +1463,21 @@ Some important HTTP status codes include:
 
 > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
-
 > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
-
 
 > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
 
-
 > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
-
 
 > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
 
-
 > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
-
 
 > `403 Forbidden` means the server understood the request but refuses to authorize it.
 
-
 > `404 Not Found` indicates that the requested resource was not found.
 
-
 > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
-
 
 Q:: =============================================  
 
