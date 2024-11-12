@@ -260,123 +260,115 @@ Q:: How do you create a new feature or bug-fix branch in Git?
 
 ###### ID11
 
-A:: You can create a new feature or bug-fix branch using the command:
+A:: Use the following command to create a new feature or bug-fix branch:
 
 ```sh
-
 git checkout -b <branchname>
-
 ```
 
 Q:: (Cloze) When making changes in Git, you should use {{c1::git add <file1> <file2> ...}} to add files, followed by {{c2::git commit}} to commit the changes.
 
 ###### ID12
 
-A:: (Cloze) `git add <file1> <file2> ... ` - you should add only files that make up a small and coherent change. `git commit` will start an editor which lets you separate the subject from the body. Read more about it in *section 1.3*.
+A:: (Cloze) `git add <file1> <file2> ...` - You should add only files that make up a small, coherent change. `git commit` starts an editor where you can separate the subject from the body.
 
-Q:: What Git command can you use to review introduced changes one by one before committing?
+References:
+- *Section 1.3* for more information on commit structuring.
+
+Q:: What Git command allows you to review each change before committing?
 
 ###### ID13
 
-A:: You can use `git add -p`, which will give you a chance to review all of the introduced changes one by one, and decide whether to include them in the commit or not.
+A:: Use `git add -p` to review each change individually and decide if it should be included in the commit.
 
-Q:: How do you sync with the remote repository to get changes you've missed?
+Q:: How do you sync your branch with the remote repository to get the latest changes?
 
 ###### ID14
 
-A:: You can sync with the remote repository using these commands:
+A:: To sync with the remote repository:
 
 ```sh
-
 git checkout develop
-
 git pull
-
 ```
 
-This will give you a chance to deal with conflicts on your machine while rebasing (later) rather than creating a Pull Request that contains conflicts.
+This allows you to handle conflicts on your machine before rebasing or creating a Pull Request with conflicts.
 
-Q:: What is the purpose of interactive rebasing in the Git workflow?
+Q:: What is the purpose of interactive rebasing in Git?
 
 ###### ID15
 
-A:: Interactive rebasing is used to update your feature branch with the latest changes from develop. You can use the following commands:
+A:: Interactive rebasing updates your feature branch with the latest changes from `develop`. Use:
 
 ```sh
-
 git checkout <branchname>
-
 git rebase -i --autosquash develop
-
 ```
 
-You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
+The `--autosquash` option combines all commits into a single one. This keeps the `develop` branch cleaner and avoids multiple commits for one feature.
 
-Q:: (Cloze) If you have conflicts during rebasing, you should {{c1::resolve them}} and then continue the rebase using {{c2::git rebase --continue}}.
+References:
+- [Interactive rebasing with autosquash](https://robots.thoughtbot.com/autosquashing-git-commits)
+
+Q:: (Cloze) If you encounter conflicts during rebasing, you should {{c1::resolve them}} and then continue the rebase using {{c2::git rebase --continue}}.
 
 ###### ID16
 
-A:: (Cloze) To resolve conflicts, use:
+A:: (Cloze) To resolve conflicts:
 
 ```sh
-
 git add <file1> <file2> ...
-
 git rebase --continue
-
 ```
 
-[Read more](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)
+References:
+- [GitHub guide to resolving merge conflicts](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)
 
-Q:: Why do you need to use the -f flag when pushing after a rebase?
+Q:: Why is the `-f` flag needed when pushing after a rebase?
 
 ###### ID17
 
-A:: When you do a rebase, you are changing the history on your feature branch. As a result, Git will reject normal `git push`. Instead, you'll need to use the -f or --force flag. The command to use is:
+A:: After a rebase, Git rejects a normal `git push` due to changed history. Use the `-f` or `--force` flag to push:
 
 ```sh
-
 git push -f
-
 ```
 
-Q:: What is the less destructive alternative to `git push -f` if someone else is working on your branch?
+Q:: What is a safer alternative to `git push -f` if others are working on the branch?
 
 ###### ID18
 
-A:: If someone else is working on your branch, you can use the less destructive `--force-with-lease` option instead of `-f`.
+A:: Use `--force-with-lease` instead of `-f` when others may also be working on the branch. It prevents overwriting changes someone else may have pushed.
 
-[read more...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+References:
+- [Explanation of `--force-with-lease`](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
-Q:: What are the final steps after your Pull Request has been accepted, merged, and closed?
+Q:: What steps should you take after your Pull Request has been accepted and merged?
 
 ###### ID19
 
-A:: The final steps are:
+A:: Final steps include:
 
-1. Remove your local feature branch if you're done:
+1. Deleting your local feature branch:
 
 ```sh
-
 git branch -d <branchname>
-
 ```
 
-2. To remove all branches which are no longer on remote:
+2. Cleaning up branches no longer on the remote:
 
 ```sh
-
 git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
-
 ```
 
-Q:: How should you structure your commit message?
+Q:: How should you format a Git commit message for clarity?
 
 ###### ID20
 
-A:: You should separate the subject from the body with a newline between the two. Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only.
+A:: Separate the subject from the body with a newline. Git will interpret the first line as the summary. You can use `git shortlog` to display only commit summaries.
 
-Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+References:
+- [Guidelines for writing clear Git commit messages](https://chris.beams.io/posts/git-commit/#seven-rules)
 
 Q:: (Cloze) When writing a commit message, limit the subject line to {{c1::50 characters}} and wrap the body at {{c2::72 characters}}.
 
