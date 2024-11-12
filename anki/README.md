@@ -366,6 +366,8 @@ git rebase --continue
 
 ```
 
+[Read more](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)
+
 Q:: =============================================  
 
 ##### Why do you need to use the -f flag when pushing after a rebase?
@@ -381,8 +383,6 @@ git push -f
 
 ```
 
-[read more...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
-
 Q:: =============================================  
 
 ##### What is the less destructive alternative to `git push -f` if someone else is working on your branch?
@@ -391,6 +391,8 @@ Q:: =============================================
 
 A:: =============================================  
 If someone else is working on your branch, you can use the less destructive `--force-with-lease` option instead of `-f`.
+
+[read more...](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
 Q:: =============================================  
 
@@ -426,6 +428,8 @@ Q:: =============================================
 A:: =============================================  
 You should separate the subject from the body with a newline between the two. Git is smart enough to distinguish the first line of your commit message as your summary. In fact, if you try git shortlog, instead of git log, you will see a long list of commit messages, consisting of the id of the commit, and the summary only.
 
+Here are some rules of thumb ([source](https://chris.beams.io/posts/git-commit/#seven-rules)):
+
 Q:: =============================================  
 
 ##### (Cloze) When writing a commit message, limit the subject line to {{c1::50 characters}} and wrap the body at {{c2::72 characters}}.
@@ -448,7 +452,7 @@ The rules for formatting the subject line of a commit message are:
 
 2. Do not end the subject line with a period.
 
-3. Use imperative mood in the subject line.
+3. Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line.
 
 Q:: =============================================  
 
@@ -575,6 +579,8 @@ Q:: =============================================
 A:: =============================================  
 (Cloze) This is because you have tokens, passwords, and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
 
+[Look at this sample](https://github.com/elsewhencode/project-guidelines/blob/master/config.sample.js)
+
 Q:: =============================================  
 
 ##### How should environment variables be managed in a project?
@@ -646,6 +652,8 @@ Q:: =============================================
 
 A:: =============================================  
 (Cloze) This ensures that team members get the exact same dependencies, making the code behave as expected and identical in any development machine. [read more...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+
+[yarn](https://yarnpkg.com/en/)
 
 Q:: =============================================  
 
@@ -1059,6 +1067,8 @@ Q:: =============================================
 A:: =============================================  
 The [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) is recommended.
 
+[Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)
+
 Q:: =============================================  
 
 ##### (Cloze) For projects using {{c1::FlowType}}, it's recommended to use {{c2::Flow type style check rules}} for {{c3::ESLint}}.
@@ -1067,6 +1077,10 @@ Q:: =============================================
 
 A:: =============================================  
 (Cloze) Flow introduces few syntaxes that also need to follow certain code style and be checked.
+
+[Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype)
+
+[FlowType](https://flow.org/)
 
 Q:: =============================================  
 
@@ -1138,7 +1152,7 @@ Q:: =============================================
 ###### ID91
 
 A:: =============================================  
-A .editorconfig file helps developers define and maintain consistent coding styles between different editors and IDEs on the project. The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
+A [.editorconfig](http://editorconfig.org/) file helps developers define and maintain consistent coding styles between different editors and IDEs on the project. The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
 
 Q:: =============================================  
 
@@ -1291,7 +1305,7 @@ Avoid URLs like this:
 GET /blogs/:blogId/posts/:postId/summary
 ```
 
-_Why:_
+Why
 
 > This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
 
@@ -1319,7 +1333,7 @@ Use verbs for non-resources, when your API doesn't return any resources but inst
 
 ```
 
-_Why:_
+Why
 
 > Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
@@ -1371,11 +1385,15 @@ For nested resources, use the relation between them in the URL. For example:
 
 > `GET /schools/2/students ` , should get the list of all students from school 2.
 
+
 > `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
+
 
 > `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
 
+
 > `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
+
 
 > `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
 
@@ -1394,7 +1412,7 @@ http://api.domain.com/v1/schools/3/students
 
 ```
 
-_Why:_
+Why
 
 > When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
@@ -1449,21 +1467,30 @@ Some important HTTP status codes include:
 
 > `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
 
+
 > `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
+
 
 > `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
 
+
 > `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
+
 
 > `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
 
+
 > `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
+
 
 > `403 Forbidden` means the server understood the request but refuses to authorize it.
 
+
 > `404 Not Found` indicates that the requested resource was not found.
 
+
 > `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
+
 
 Q:: =============================================  
 
@@ -1765,7 +1792,7 @@ Q:: =============================================
 ###### ID138
 
 A:: =============================================  
-Web content is accessible by default, but we often compromise this when building complex features. It's much easier to maintain accessibility by considering it from the start rather than re-implementing features later.
+Web content is [accessible by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML), but we often compromise this when building complex features. It's much easier to maintain accessibility by considering it from the start rather than re-implementing features later.
 
 Q:: =============================================  
 
@@ -1776,9 +1803,9 @@ Q:: =============================================
 A:: =============================================  
 Two recommended tools for regular accessibility audits are:
 
-1. Lighthouse accessibility in Google Chrome DevTools
+1. [Lighthouse accessibility](https://developers.google.com/web/tools/lighthouse#devtools) in Google Chrome DevTools
 
-2. The axe DevTools extension
+2. The [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US)
 
 Q:: =============================================  
 
@@ -1788,6 +1815,8 @@ Q:: =============================================
 
 A:: =============================================  
 (Cloze) These assessments help determine the severity and impact of accessibility issues.
+
+[axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules)
 
 Q:: =============================================  
 
