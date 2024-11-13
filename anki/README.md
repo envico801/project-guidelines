@@ -408,53 +408,53 @@ A:: The body of a commit message should explain **what** and **why** changes are
 
 ![documentation](../images/documentation.png)
 
-Q:: What template should be used for creating a README.md file?
+Q:: What template should be used for a `README.md` file?
 
 ###### ID25
 
-A:: Use this [template](./README.sample.md) for `README.md`. Feel free to add uncovered sections as needed.
+A:: Use this [README.md template](https://github.com/elsewhencode/project-guidelines/blob/master/README.sample.md) as a starting point. Add additional sections if needed.
 
-Q:: How should documentation be handled for projects with multiple repositories?
+Q:: How should documentation be organized for projects with multiple repositories?
 
 ###### ID26
 
-A:: For projects with more than one repository, provide links to them in their respective `README.md` files.
+A:: For multi-repository projects, include links to other repositories in each respective `README.md` file.
 
-Q:: (Cloze) The {{c1::README.md}} file should be {{c2::kept updated}} as the project {{c3::evolves}}.
+Q:: (Cloze) How should the {{c1::README.md}} file be maintained as the project progresses?
 
 ###### ID27
 
-A:: (Cloze) This ensures that the documentation remains relevant and useful throughout the project's lifecycle.
+A:: (Cloze) Keep the `README.md` file updated as the project evolves to ensure that documentation remains relevant and helpful throughout the project's lifecycle.
 
-Q:: What is the primary purpose of commenting your code?
+Q:: What is the primary purpose of adding comments to your code?
 
 ###### ID28
 
-A:: Comment your code to make it as clear as possible what you are intending with each major section.
+A:: Comment your code to clarify the intent behind each major section, enhancing understanding for others and for future reference.
 
 Q:: When should you include links to external discussions in your code comments?
 
 ###### ID29
 
-A:: If there is an open discussion on GitHub or stackoverflow about the code or approach you're using, include the link in your comment.
+A:: Include links to open discussions (e.g., on GitHub or StackOverflow) within comments when they provide helpful context or detail for the approach you're using.
 
 Q:: (Cloze) Comments should not be used as an {{c1::excuse for bad code}}. Instead, you should {{c2::keep your code clean}}.
 
 ###### ID30
 
-A:: (Cloze) This emphasizes the importance of writing clear, readable code rather than relying on comments to explain poorly written code.
+A:: (Cloze) Comments should not be used as an **excuse for bad code**. Instead, focus on **keeping code clean** so that comments enhance, rather than compensate for, code quality.
 
-Q:: What is the relationship between clean code and comments?
+Q:: How should clean code and comments work together?
 
 ###### ID31
 
-A:: Don't use clean code as an excuse to not comment at all. While code should be clean and readable, comments are still necessary to provide context and explain complex logic.
+A:: Clean code should not replace comments entirely. While code should be as readable as possible, comments are still needed to provide context and clarify complex or non-obvious logic.
 
-Q:: How should comments be maintained over time?
+Q:: How should comments be maintained as code evolves?
 
 ###### ID32
 
-A:: Keep comments relevant as your code evolves. This means updating or removing comments that no longer accurately describe the code they're associated with.
+A:: Update or remove comments as your code changes to keep them relevant and accurate. Outdated comments can be misleading, so they should evolve alongside the code they describe.
 
 #### Chapter 3 - Environments
 
