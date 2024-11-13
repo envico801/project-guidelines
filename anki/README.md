@@ -1256,136 +1256,121 @@ Q:: How should data validation be handled in APIs?
 
 A:: The API should validate **all data exchanged**—both incoming requests and outgoing responses—to ensure data integrity, accuracy, and security across the API.
 
-Q:: What additional resource can be consulted for a comprehensive API security checklist?
+Q:: Where can you find a comprehensive API security checklist?
 
 ###### ID127
 
-A:: The API Security Checklist Project provides a comprehensive list of security best practices for API development. [Read more...](https://github.com/shieldfy/API-Security-Checklist)
+A:: The **API Security Checklist Project** offers a detailed list of best practices to secure APIs effectively.
+
+References:
+- [API Security Checklist Project on GitHub](https://github.com/shieldfy/API-Security-Checklist)
 
 Q:: What should be included in the API Reference section of the README.md file?
 
 ###### ID128
 
-A:: The API Reference section in the README.md file should include a comprehensive description of the API, including authentication methods, URL structure, request types, and details for each endpoint.
+A:: The **API Reference section** in the README.md should include a complete overview of the API, detailing authentication methods, URL structure, request types, and endpoint information.
 
-[README.md template](https://github.com/elsewhencode/project-guidelines/blob/master/README.sample.md)
+References:
+- [README.md Template](https://github.com/elsewhencode/project-guidelines/blob/master/README.sample.md)
 
 Q:: How should API authentication methods be documented?
 
 ###### ID129
 
-A:: API authentication methods should be described with a code sample to demonstrate their proper usage.
+A:: **API authentication methods** should be documented with a **code sample** to clearly show proper usage.
 
-Q:: What information should be included when explaining the URL structure of an API?
+Q:: What information should be provided to explain the URL structure of an API?
 
 ###### ID130
 
-A:: When explaining the URL structure of an API, include the path (without the root URL) and the request type (Method) for each endpoint.
+A:: When explaining the **URL structure** of an API, include the **path** (excluding the root URL) and **HTTP request method** for each endpoint.
 
 Q:: How should URL parameters be documented in API documentation?
 
 ###### ID131
 
-A:: URL parameters should be documented as follows:
+A:: Document URL parameters by:
 
-- Specify if they are Required or Optional
-
-- Provide the name and type of each parameter
+- **Specifying** if they are required or optional
+- **Naming** each parameter and providing its data type
 
 For example:
 
 ```
-
 Required: id=[integer]
-
 Optional: photo_id=[alphanumeric]
-
 ```
 
 Q:: (Cloze) For POST requests in API documentation, you should provide {{c1::working examples}} and separate the parameters into {{c2::Optional}} and {{c3::Required}} sections.
 
 ###### ID132
 
-A:: (Cloze) This helps users understand how to properly structure their POST requests to the API.
+A:: (Cloze) This format helps users understand how to correctly structure their **POST requests**.
 
-Q:: What information should be included in the Success Response section of API documentation?
+Q:: What details should be included in the Success Response section of API documentation?
 
 ###### ID133
 
-A:: The Success Response section should include:
+A:: The **Success Response** section should include:
 
-- The expected status code
-
-- Any return data
+- The **expected status code**
+- Any **return data**
 
 For example:
 
 ```
-
 Code: 200
-
 Content: { id : 12 }
-
 ```
 
 Q:: How should Error Responses be documented in API documentation?
 
 ###### ID134
 
-A:: Error Responses should be documented comprehensively, including:
+A:: Document **Error Responses** by including:
 
-- All possible ways an endpoint can fail (e.g., unauthorized access, wrong parameters)
-
-- The error code, message, and description for each error case
+- All possible failure scenarios for an endpoint (e.g., unauthorized access, incorrect parameters)
+- **Error code, message, and description** for each error case
 
 For example:
 
 ```json
-
 {
-
   "code": 401,
-
   "message": "Authentication failed",
-
   "description": "Invalid username or password"
-
 }
-
 ```
 
-Q:: Why is it important to document all possible error responses for an API endpoint?
+Q:: Why is it important to document all potential error responses for an API endpoint?
 
 ###### ID135
 
-A:: Documenting all possible error responses helps prevent assumptions from being made by API users. Even if it seems repetitive, it provides clear expectations for all potential failure scenarios.
+A:: Documenting all possible error responses helps **avoid assumptions** by API users. Even if it seems repetitive, it sets **clear expectations** for potential failures.
 
 Q:: (Cloze) Two popular open-source tools for API documentation are {{c1::API Blueprint}} and {{c2::Swagger}}.
 
 ###### ID136
 
-A:: (Cloze) These tools can help create good, standardized documentation for your API.
+A:: (Cloze) These tools support standardized, clear API documentation.
 
+References:
 - [API Blueprint](https://apiblueprint.org/)
-- [Swagger](https://swagger.io/).
+- [Swagger](https://swagger.io/)
 
-Q:: What are the key components that should be explained for each API endpoint in the documentation?
+Q:: What are the key components to document for each API endpoint?
 
 ###### ID137
 
-A:: For each API endpoint, the documentation should explain:
+A:: For each API endpoint, include the following in the documentation:
 
-1. The URL structure (path only, no root URL)
-
-2. The request type (Method)
-
-3. URL parameters (if any), specifying if they are required or optional
-
-4. Request body for POST requests, with examples
-
-5. Success response (status code and return data)
-
-6. Possible error responses (status codes, messages, and descriptions)
+1. **URL structure** (path only, no root URL)
+2. **Request type** (Method)
+3. **URL parameters** (specify if required or optional)
+4. **Request body** for POST requests, with examples
+5. **Success response** (status code and return data)
+6. **Error responses** (status codes, messages, and descriptions)
 
 #### Chapter 10 - Accessibility
 
