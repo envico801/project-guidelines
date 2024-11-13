@@ -460,67 +460,86 @@ A:: Update or remove comments as your code changes to keep them relevant and acc
 
 ![laptop](../images/laptop.png)
 
-Q:: What are the three main environments typically defined in a project?
+Q:: What are the three main environments commonly defined in a project?
 
 ###### ID33
 
 A:: The three main environments typically defined are `development`, `test`, and `production`.
 
-Q:: Why is it important to define separate environments?
+Q:: Why is it essential to define separate environments in a project?
 
 ###### ID34
 
-A:: Different environments may need different data, tokens, APIs, ports, etc. For example, you may want an isolated `development` mode that calls a fake API returning predictable data for easier testing, or enable Google Analytics only in `production`. [read more...](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+A:: Different environments often require distinct configurations, such as data sources, tokens, APIs, and ports. For example, `development` mode might use a fake API for testing, while `production` may have Google Analytics enabled.
 
-Q:: (Cloze) Deployment-specific configurations should be loaded from {{c1::environment variables}} and never added to the codebase as {{c2::constants}}.
+**References:**
+- [Learn more about environment-specific configs](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
+
+Q:: (Cloze) Why should deployment-specific configurations be loaded from {{c1::environment variables}} instead of added as {{c2::constants}} in the codebase?
 
 ###### ID35
 
-A:: (Cloze) This is because you have tokens, passwords, and other valuable information in there. Your config should be correctly separated from the app internals as if the codebase could be made public at any moment.
+A:: (Cloze) Loading configurations from environment variables keeps sensitive information, such as tokens and passwords, outside the codebase, which is essential for security.
 
-[Look at this sample](https://github.com/elsewhencode/project-guidelines/blob/master/config.sample.js)
+**References:**
+- [Sample configuration](https://github.com/elsewhencode/project-guidelines/blob/master/config.sample.js)
 
-Q:: How should environment variables be managed in a project?
+Q:: How should environment variables be handled in a project?
 
 ###### ID36
 
-A:: Use `.env` files to store your variables and add them to `.gitignore` to be excluded. Instead, commit a `.env.example` which serves as a guide for developers. For production, you should still set your environment variables in the standard way. [read more](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+A:: Store environment variables in `.env` files and exclude them from version control using `.gitignore`. Commit a `.env.example` file as a guide for developers, and set environment variables through standard means for production.
 
-Q:: Why is it recommended to validate environment variables before the app starts?
+**References:**
+- [Guide to managing environment variables in Node.js](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
+
+Q:: Why is it advised to validate environment variables before the app starts?
 
 ###### ID37
 
-A:: It may save others from hours of troubleshooting. You can use tools like `joi` to validate provided values. [Look at this sample](./configWithTest.sample.js)
+A:: Validating environment variables can prevent long troubleshooting sessions by catching errors early. Libraries like `joi` can be helpful for validating these values.
+
+**References:**
+- [Sample configuration with validation](./configWithTest.sample.js)
 
 Q:: (Cloze) To specify the node version for a project, set it in the {{c1::engines}} field of {{c2::package.json}}.
 
 ###### ID38
 
-A:: (Cloze) This lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
+A:: (Cloze) Specify the node version in the `engines` field of `package.json`. This clarifies the required node version for the project.
 
-Q:: What is the purpose of using `nvm` and creating a `.nvmrc` file?
+**References:**
+- [npm documentation on engines](https://docs.npmjs.com/files/package.json#engines)
+
+Q:: What is the purpose of using `nvm` and a `.nvmrc` file in a project?
 
 ###### ID39
 
-A:: Using `nvm` and creating a `.nvmrc` file allows anyone who uses `nvm` to simply use `nvm use` to switch to the suitable node version. [read more...](https://github.com/creationix/nvm)
+A:: A `.nvmrc` file and `nvm` allow users to switch to the correct node version with `nvm use`, ensuring a consistent environment.
 
-Q:: Why might you set up a `preinstall` script in your project?
+**References:**
+- [nvm repository](https://github.com/creationix/nvm)
+
+Q:: Why should a `preinstall` script be added to a project?
 
 ###### ID40
 
-A:: It's a good idea to set up a `preinstall` script that checks node and npm versions because some dependencies may fail when installed by newer versions of npm.
+A:: A `preinstall` script that checks node and npm versions helps avoid dependency issues, which can arise if dependencies are installed with incompatible npm versions.
 
-Q:: What are the advantages of using Docker in a project?
+Q:: What are the benefits of using Docker in a project?
 
 ###### ID41
 
-A:: Using Docker can give you a consistent environment across the entire workflow, without much need to fiddle with dependencies or configs. [read more...](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+A:: Docker provides a consistent environment across development, testing, and production, minimizing dependency and configuration issues.
 
-Q:: Why is it recommended to use local modules instead of globally installed modules?
+**References:**
+- [Guide to Dockerizing a Node.js application](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
+
+Q:: Why is it preferable to use local modules instead of globally installed ones?
 
 ###### ID42
 
-A:: Using local modules lets you share your tooling with your colleagues instead of expecting them to have it globally on their systems.
+A:: Local modules ensure that tooling is shared among team members, avoiding the need for each person to install global dependencies on their own systems.
 
 Q:: (Cloze) To ensure consistent dependencies across a team, use {{c1::package-lock.json}} on {{c2::npm@5}} or higher, or alternatively use {{c3::Yarn}}.
 
