@@ -1501,16 +1501,16 @@ A:: More accessibility rules are available at **[Deque University’s axe rules]
 ![licensing](../images/licensing.png)
 
 Q:: (Cloze) When using resources in your project, it's important to ensure you have the {{c1::rights to use}} them. For libraries, look for licenses such as {{c2::MIT}}, {{c3::Apache}}, or {{c4::BSD}}.
-
 ###### ID154
-
-A:: (Cloze) However, if you modify these libraries, you should review the license details carefully.
+A:: (Cloze) However, if you **modify** these libraries, you should review the license details *carefully*.
 
 Q:: What potential legal issues should be considered when using images and videos in a project?
-
 ###### ID155
-
-A:: Copyrighted images and videos may cause legal problems. It's important to ensure you have the right to use any visual content in your project.
+A:: When using visual content in your project, consider these key points:
+- **Copyright infringement**: Using copyrighted images and videos without proper permission may cause legal problems
+- **Attribution requirements**: Some licenses require proper credit to the original creator
+- **Usage restrictions**: Some licenses may limit how you can use or modify the content
+- **Commercial vs. non-commercial use**: Different licenses may apply depending on your project's nature
 
 ---
 
