@@ -647,87 +647,94 @@ A:: (Cloze) Always review dependency release notes to be aware of potential brea
 
 ![testing](../images/testing.png)
 
-Q:: Why might you need a separate `test` mode environment?
+Q:: Why is a separate `test` mode environment often necessary?
 
 ###### ID56
 
-A:: A separate `test` mode environment can be useful because:
+A:: A separate `test` mode environment can help avoid issues such as:
 
-1. You may not want to enable analytical information in 'production' mode and pollute someone's dashboard with test data.
+1. Preventing test data from affecting production analytics or dashboards.
 
-2. Your API may have rate limits in `production` that could block your test calls after a certain amount of requests.
+2. Avoiding production API rate limits, which might block test calls if exceeded.
 
-Q:: (Cloze) Test files should be placed {{c1::next to the tested modules}} using the naming convention {{c2::*.test.js}} or {{c3::*.spec.js}}.
+Q:: (Cloze) Test files should be placed {{c1::next to the tested modules}} using the naming convention {{c2::\*.test.js}} or {{c3::\*.spec.js}}.
 
 ###### ID57
 
-A:: (Cloze) This placement ensures you don't have to dig through a folder structure to find a unit test. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+A:: (Cloze) Place test files next to the modules they test, using the naming convention `*.test.js` or `*.spec.js`. This organization makes it easy to locate tests without navigating through complex folder structures.
 
-Q:: Where should additional test files that don't relate to specific implementation files be placed?
+**References:**
+- [Read more on code structure for testability](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+
+Q:: Where should additional test files that don’t relate to specific files be stored?
 
 ###### ID58
 
-A:: Additional test files that don't particularly relate to any specific implementation file should be put in a separate test folder, typically named `__test__`, to avoid confusion.
+A:: Store additional test files in a separate folder, usually named `__test__`, to keep them distinct from specific implementation files and reduce confusion.
 
-Q:: Why is the `__test__` folder name considered standard?
+Q:: Why is the `__test__` folder name widely adopted?
 
 ###### ID59
 
-A:: The name `__test__` is considered standard and gets picked up by most JavaScript testing frameworks.
+A:: The `__test__` folder name is considered a standard convention and is automatically recognized by many JavaScript testing frameworks.
 
-Q:: What are the characteristics of testable code?
+Q:: What are the key characteristics of testable code?
 
 ###### ID60
 
 A:: Testable code should:
 
-1. Avoid side effects
-
-2. Extract side effects
-
-3. Use pure functions
+1. Avoid side effects.
+2. Extract side effects to isolated functions.
+3. Make use of pure functions for predictable results.
 
 Q:: (Cloze) A {{c1::pure function}} is a function that always returns the {{c2::same output}} for the {{c3::same input}}.
 
 ###### ID61
 
-A:: (Cloze) Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value, making it less predictable. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+A:: (Cloze) A pure function always returns the same output for the same input and has no side effects. In contrast, an impure function may rely on external factors or cause side effects, making it less predictable.
 
-Q:: Why is it important to write testable code with pure functions?
+**References:**
+- [Read more on testable JavaScript code](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+
+Q:: Why is it beneficial to use pure functions for testable code?
 
 ###### ID62
 
-A:: Writing testable code with pure functions allows you to:
+A:: Pure functions make your code more reliable by allowing you to:
 
-1. Test business logic as separate units
+1. Test business logic independently as isolated units.
+2. Minimize the impact of randomness and external conditions, which could reduce test reliability.
 
-2. Minimize the impact of randomness and nondeterministic processes on the reliability of your code
+**References:**
+- [Read more on test-driven development](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
 
-[read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
-
-Q:: What is the benefit of using a static type checker?
+Q:: What is the benefit of using a static type checker in testing?
 
 ###### ID63
 
-A:: A static type checker brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+A:: A static type checker enhances reliability by catching type-related errors before runtime, contributing to more robust code.
 
-Q:: When should you run tests in relation to making pull requests?
+**References:**
+- [FreeCodeCamp article on static types](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+
+Q:: When should you run tests relative to making pull requests?
 
 ###### ID64
 
-A:: You should run tests locally before making any pull requests to `develop`.
+A:: Run tests locally before creating any pull requests to the `develop` branch. This ensures your code changes are stable and reduces potential integration issues.
 
-Q:: Why is it important to run tests before pushing to a remote repository?
+Q:: Why should you run tests before pushing code to a remote repository?
 
 ###### ID65
 
-A:: Running tests after your `rebase` and before pushing your feature-branch to a remote repository ensures that you don't cause the production-ready branch build to fail.
+A:: Running tests after a `rebase` and before pushing code to a remote repository helps prevent build failures on production-ready branches.
 
-Q:: Why is it important to document your tests?
+Q:: Why is test documentation important?
 
 ###### ID66
 
-A:: Documenting your tests provides valuable information for other developers, DevOps experts, QA, or anyone who may work on your code in the future, making it easier for them to understand and run the tests.
+A:: Documenting tests provides clarity and context, making it easier for other developers, DevOps, QA, and future contributors to understand and run tests effectively.
 
 #### Chapter 6 - Structure and Naming
 
