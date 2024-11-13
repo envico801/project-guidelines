@@ -1181,71 +1181,80 @@ Q:: (Cloze) In API design, it’s recommended to provide {{c1::total numbers of 
 
 A:: (Cloze) For resources that support filtering and sorting, document these capabilities, although they need not be available for all resources at the start.
 
-Q:: Why is it important to use common HTTP status codes in API responses?
+Q:: Why is it important to use familiar HTTP status codes in API responses?
 
 ###### ID116
 
-A:: Using common HTTP status codes is important because most developers don't have all 70+ HTTP status codes memorized. Using uncommon status codes might force developers to look up their meanings, disrupting their workflow. Most API providers use a small subset of HTTP status codes for clarity and ease of use. [read more...](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
+A:: Using **common HTTP status codes** is essential because most developers do not memorize all 70+ HTTP status codes. Relying on common codes helps prevent developers from needing to look up meanings, thus keeping their workflow efficient. Most API providers use a **limited subset of codes** for consistency and ease of use.
+
+References:
+- [Using Standard HTTP Status Codes](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 Q:: How should security exception messages be handled in API responses?
 
 ###### ID117
 
-A:: Keep security exception messages as generic as possible. For instance, instead of saying 'incorrect password', reply with 'invalid username or password'. This prevents unknowingly informing the user that the username was correct and only the password was incorrect.
+A:: Keep **security exception messages generic** to avoid unintentionally revealing information. For example, instead of replying with "incorrect password," use a message like "invalid username or password" to prevent disclosing that the username was correct.
 
-Q:: Why should basic authentication not be used unless over a secure connection (HTTPS)?
+Q:: Why avoid using basic authentication without HTTPS?
 
 ###### ID118
 
-A:: Basic authentication should not be used without HTTPS because the token, user ID, and password are transmitted over the network as clear text (base64 encoded, which is reversible). This makes the basic authentication scheme insecure. [Read more...](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+A:: Basic authentication should be avoided over unsecured connections because it sends the **user ID and password in clear text** (encoded in base64, which is reversible). Without HTTPS, this information can be easily intercepted, compromising security.
 
-Q:: How should authentication tokens be transmitted in API requests?
+References:
+- [Basic Authentication and HTTPS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
+
+Q:: How should authentication tokens be handled in API requests?
 
 ###### ID119
 
-A:: Authentication tokens must be transmitted using the Authorization header on every request. For example: `Authorization: Bearer xxxxxx, Extra yyyyy`. They should not be transmitted in the URL.
+A:: **Authentication tokens** should be included in every request using the `Authorization` header, like so: `Authorization: Bearer xxxxxx, Extra yyyyy`. **Avoid sending tokens in the URL** for security reasons.
 
 Q:: (Cloze) To enhance API security, {{c1::Authorization Code}} should be {{c2::short-lived}}, and any {{c3::non-TLS requests}} should be rejected by responding with {{c4::403 Forbidden}}.
 
 ###### ID120
 
-A:: (Cloze) These measures help protect against unauthorized access and insecure data exchange.
+A:: (Cloze) These security practices help prevent **unauthorized access** and safeguard **data integrity** over secure connections.
 
 Q:: Why is Rate Limiting important for API security?
 
 ###### ID121
 
-A:: Rate Limiting is important to protect your APIs from bot threats that may call your API thousands of times per hour. It's recommended to implement rate limiting early on in your API development process.
+A:: **Rate Limiting** is crucial to protect your API from bot threats that may attempt thousands of calls per hour. It’s best to implement rate limiting **early in API development** to prevent abuse and protect resources.
 
-Q:: What should an API do with received data to ensure security?
+Q:: What should an API do to handle received data securely?
 
 ###### ID122
 
-A:: An API should convert the received data to their canonical form or reject them. If there are any errors from bad or missing data, the API should return a 400 Bad Request status with details about the errors.
+A:: An API should **convert received data to its canonical form** or reject it if it does not meet requirements. When errors arise due to bad or missing data, the API should respond with a **400 Bad Request** and provide error details.
 
-Q:: Why is it important to serialize JSON in API responses?
+Q:: Why is JSON serialization important in API responses?
 
 ###### ID123
 
-A:: Serializing JSON is crucial because a key concern with JSON encoders is preventing arbitrary JavaScript remote code execution within the browser or on the server (if using node.js). Using a proper JSON serializer to encode user-supplied data properly prevents the execution of user-supplied input on the browser.
+A:: **JSON serialization** is essential to prevent JavaScript **remote code execution** in the browser or on the server (if using Node.js). A proper JSON serializer ensures **user-supplied data** is encoded correctly, blocking any execution of such input on the client side.
 
-Q:: (Cloze) When validating the content-type in API requests, it's recommended to mostly use {{c1::application/*json}}. Accepting other mime types like {{c2::application/x-www-form-urlencoded}} could allow attackers to {{c3::create a form and trigger a simple POST request}}.
+Q:: (Cloze) When validating the content-type in API requests, it’s recommended to primarily accept {{c1::application/\*json}}. Accepting other MIME types like {{c2::application/x-www-form-urlencoded}} could allow attackers to {{c3::create a form and trigger a simple POST request}}.
 
 ###### ID124
 
-A:: (Cloze) The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a 4XX response.
+A:: (Cloze) The server should **never assume the Content-Type**. If the Content-Type header is missing or does not meet expectations, the server should respond with a **4XX error** to reject the content.
 
-Q:: What security measures can be implemented through HTTP headers?
+Q:: What security enhancements can HTTP headers provide for APIs?
 
 ###### ID125
 
-A:: Setting HTTP headers appropriately can help to lock down and secure your web application. The Helmet project provides a set of security middleware for Express apps that can help set various HTTP headers. [Read more...](https://github.com/helmetjs/helmet)
+A:: Setting **HTTP headers** properly can help secure your API by controlling what information is shared. The Helmet project offers a set of middleware for Express applications to set headers that enhance security.
 
-Q:: How should an API handle data validation?
+References:
+- [Helmet for HTTP Header Security](https://github.com/helmetjs/helmet)
+
+Q:: How should data validation be handled in APIs?
 
 ###### ID126
 
-A:: All the data exchanged with the REST API must be validated by the API. This includes both incoming requests and outgoing responses to ensure data integrity and security.
+A:: The API should validate **all data exchanged**—both incoming requests and outgoing responses—to ensure data integrity, accuracy, and security across the API.
 
 Q:: What additional resource can be consulted for a comprehensive API security checklist?
 
