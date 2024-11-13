@@ -184,7 +184,7 @@ Q:: What type of branch is best for feature development?
 
 A:: You should perform work in a feature branch. This way, all work is done in isolation on a dedicated branch rather than the main branch, allowing you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code.
 
-**References:**
+**References**:
 - [Feature branch workflow by Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
 
 Q:: Which branch should be used as a starting point for feature branches?
@@ -205,7 +205,7 @@ Q:: What preparations are necessary before pushing a feature and making a Pull R
 
 A:: Update your local `develop` branch and perform an interactive rebase. This rebases the requested branch (`master` or `develop`) and applies your local commits at the top of the history without creating a merge commit, ensuring a clean history.
 
-**References:**
+**References**:
 - [Merging vs Rebasing by Atlassian](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
 
 Q:: When is it best to handle conflicts in Git?
@@ -238,7 +238,7 @@ Q:: How can `develop` and `master` branches be protected from accidental changes
 
 A:: Enable branch protection for `develop` and `master` to prevent unexpected and irreversible changes.
 
-**References:**
+**References**:
 - [GitHub - About protected branches](https://help.github.com/articles/about-protected-branches/)
 - [Bitbucket - Using branch permissions](https://confluence.atlassian.com/bitbucketserver/using-branch-permissions-776639807.html)
 - [GitLab - Protected branches](https://docs.gitlab.com/ee/user/project/protected_branches.html)
@@ -272,7 +272,7 @@ Q:: (Cloze) When making changes in Git, you should use {{c1::git add <file1> <fi
 
 A:: (Cloze) `git add <file1> <file2> ...` - You should add only files that make up a small, coherent change. `git commit` starts an editor where you can separate the subject from the body.
 
-References:
+**References**:
 - *[Section 1.3](https://github.com/elsewhencode/project-guidelines#13-writing-good-commit-messages)* for more information on commit structuring.
 
 Q:: What Git command allows you to review each change before committing?
@@ -307,7 +307,7 @@ git rebase -i --autosquash develop
 
 The `--autosquash` option combines all commits into a single one. This keeps the `develop` branch cleaner and avoids multiple commits for one feature.
 
-References:
+**References**:
 - [Interactive rebasing with autosquash](https://robots.thoughtbot.com/autosquashing-git-commits)
 
 Q:: (Cloze) If you encounter conflicts during rebasing, you should {{c1::resolve them}} and then continue the rebase using {{c2::git rebase --continue}}.
@@ -321,7 +321,7 @@ git add <file1> <file2> ...
 git rebase --continue
 ```
 
-References:
+**References**:
 - [GitHub guide to resolving merge conflicts](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/)
 
 Q:: Why is the `-f` flag needed when pushing after a rebase?
@@ -340,7 +340,7 @@ Q:: What is a safer alternative to `git push -f` if others are working on the br
 
 A:: Use `--force-with-lease` instead of `-f` when others may also be working on the branch. It prevents overwriting changes someone else may have pushed.
 
-References:
+**References**:
 - [Explanation of `--force-with-lease`](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
 Q:: What steps should you take after your Pull Request has been accepted and merged?
@@ -367,7 +367,7 @@ Q:: How should you format a Git commit message for clarity?
 
 A:: Separate the subject from the body with a newline. Git will interpret the first line as the summary. You can use `git shortlog` to display only commit summaries.
 
-References:
+**References**:
 - [Guidelines for writing clear Git commit messages](https://chris.beams.io/posts/git-commit/#seven-rules)
 
 Q:: (Cloze) When writing a commit message, limit the subject line to {{c1::50 characters}} and wrap the body at {{c2::72 characters}}.
@@ -376,7 +376,7 @@ Q:: (Cloze) When writing a commit message, limit the subject line to {{c1::50 ch
 
 A:: (Cloze) Limit the subject line to `50 characters` and wrap the body at `72 characters`. Keep commits focused and avoid verbosity.
 
-**References:**
+**References**:
 - [The 50/72 rule for commit messages](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
 Q:: What are the formatting rules for a commit message subject line?
@@ -395,7 +395,7 @@ Q:: Why is it important to use imperative mood in commit message subject lines?
 
 A:: The imperative mood frames the commit message as an instruction for what will happen after it’s applied, rather than a record of what was done.
 
-**References:**
+**References**:
 - [Why use imperative mood in commit messages](https://news.ycombinator.com/item?id=2079612)
 
 Q:: What should the commit message body focus on explaining?
@@ -472,7 +472,7 @@ Q:: Why is it essential to define separate environments in a project?
 
 A:: Different environments often require distinct configurations, such as data sources, tokens, APIs, and ports. For example, `development` mode might use a fake API for testing, while `production` may have Google Analytics enabled.
 
-**References:**
+**References**:
 - [Learn more about environment-specific configs](https://stackoverflow.com/questions/8332333/node-js-setting-up-environment-specific-configs-to-be-used-with-everyauth)
 
 Q:: (Cloze) Why should deployment-specific configurations be loaded from {{c1::environment variables}} instead of added as {{c2::constants}} in the codebase?
@@ -481,7 +481,7 @@ Q:: (Cloze) Why should deployment-specific configurations be loaded from {{c1::e
 
 A:: (Cloze) Loading configurations from environment variables keeps sensitive information, such as tokens and passwords, outside the codebase, which is essential for security.
 
-**References:**
+**References**:
 - [Sample configuration](https://github.com/elsewhencode/project-guidelines/blob/master/config.sample.js)
 
 Q:: How should environment variables be handled in a project?
@@ -490,7 +490,7 @@ Q:: How should environment variables be handled in a project?
 
 A:: Store environment variables in `.env` files and exclude them from version control using `.gitignore`. Commit a `.env.example` file as a guide for developers, and set environment variables through standard means for production.
 
-**References:**
+**References**:
 - [Guide to managing environment variables in Node.js](https://medium.com/@rafaelvidaurre/managing-environment-variables-in-node-js-2cb45a55195f)
 
 Q:: Why is it advised to validate environment variables before the app starts?
@@ -499,8 +499,8 @@ Q:: Why is it advised to validate environment variables before the app starts?
 
 A:: Validating environment variables can prevent long troubleshooting sessions by catching errors early. Libraries like `joi` can be helpful for validating these values.
 
-**References:**
-- [Sample configuration with validation](./configWithTest.sample.js)
+**References**:
+- [Sample configuration with validation](https://github.com/elsewhencode/project-guidelines/blob/master/configWithTest.sample.js)
 
 Q:: (Cloze) To specify the node version for a project, set it in the {{c1::engines}} field of {{c2::package.json}}.
 
@@ -508,7 +508,7 @@ Q:: (Cloze) To specify the node version for a project, set it in the {{c1::engin
 
 A:: (Cloze) Specify the node version in the `engines` field of `package.json`. This clarifies the required node version for the project.
 
-**References:**
+**References**:
 - [npm documentation on engines](https://docs.npmjs.com/files/package.json#engines)
 
 Q:: What is the purpose of using `nvm` and a `.nvmrc` file in a project?
@@ -517,7 +517,7 @@ Q:: What is the purpose of using `nvm` and a `.nvmrc` file in a project?
 
 A:: A `.nvmrc` file and `nvm` allow users to switch to the correct node version with `nvm use`, ensuring a consistent environment.
 
-**References:**
+**References**:
 - [nvm repository](https://github.com/creationix/nvm)
 
 Q:: Why should a `preinstall` script be added to a project?
@@ -532,7 +532,7 @@ Q:: What are the benefits of using Docker in a project?
 
 A:: Docker provides a consistent environment across development, testing, and production, minimizing dependency and configuration issues.
 
-**References:**
+**References**:
 - [Guide to Dockerizing a Node.js application](https://hackernoon.com/how-to-dockerize-a-node-js-application-4fbab45a0c19)
 
 Q:: Why is it preferable to use local modules instead of globally installed ones?
@@ -547,7 +547,7 @@ Q:: (Cloze) To ensure consistent dependencies across a team, use {{c1::package-l
 
 A:: (Cloze) To maintain consistent dependencies, use `package-lock.json` with `npm@5` or higher, or alternatively use Yarn. This guarantees that all team members have the exact same dependencies, ensuring uniform code behavior across development environments.
 
-**References:**
+**References**:
 - [Guide to consistent dependencies across teams](https://kostasbariotis.com/consistent-dependencies-across-teams/)
 - [Yarn package manager](https://yarnpkg.com/en/)
 
@@ -557,7 +557,7 @@ Q:: How can you ensure consistent dependencies when using older versions of npm?
 
 A:: For older versions of npm, use `--save --save-exact` when installing a new dependency and create an `npm-shrinkwrap.json` file before publishing. This will lock dependencies to specific versions, similar to `package-lock.json` in newer npm versions.
 
-**References:**
+**References**:
 - [npm documentation on package locks](https://docs.npmjs.com/files/package-locks)
 
 #### Chapter 4 - Dependencies
@@ -570,7 +570,7 @@ Q:: How can you list currently available npm packages in your project?
 
 A:: You can use the command `npm ls --depth=0` to list currently available packages in your project.
 
-**References:**
+**References**:
 - [npm ls command documentation](https://docs.npmjs.com/cli/ls)
 
 Q:: What tool helps identify unused or irrelevant packages in a project?
@@ -579,7 +579,7 @@ Q:: What tool helps identify unused or irrelevant packages in a project?
 
 A:: Use the `depcheck` tool to check for packages that have become unused or irrelevant in your project.
 
-**References:**
+**References**:
 - [Depcheck npm package](https://www.npmjs.com/package/depcheck)
 
 Q:: Why is it important to remove unused dependencies?
@@ -594,7 +594,7 @@ Q:: What should you evaluate before adding a new npm dependency?
 
 A:: Before using a dependency, evaluate its release frequency, number of maintainers, and download statistics to determine if it is widely used and actively maintained. This helps ensure community support, ongoing updates, and timely bug fixes.
 
-**References:**
+**References**:
 - [npm view command documentation](https://docs.npmjs.com/cli/view)
 - [npm-stat usage statistics](https://npm-stat.com/)
 
@@ -616,7 +616,7 @@ Q:: (Cloze) To ensure your app works with the latest version of its dependencies
 
 A:: (Cloze) Use the command `npm outdated` to verify if any dependencies need updating, which can help keep your project current with the latest patches and features.
 
-**References:**
+**References**:
 - [npm outdated command documentation](https://docs.npmjs.com/cli/outdated)
 
 Q:: Why is it beneficial to update dependencies one at a time?
@@ -663,7 +663,7 @@ Q:: (Cloze) Test files should be placed {{c1::next to the tested modules}} using
 
 A:: (Cloze) Place test files next to the modules they test, using the naming convention `*.test.js` or `*.spec.js`. This organization makes it easy to locate tests without navigating through complex folder structures.
 
-**References:**
+**References**:
 - [Read more on code structure for testability](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 Q:: Where should additional test files that don’t relate to specific files be stored?
@@ -694,7 +694,7 @@ Q:: (Cloze) A {{c1::pure function}} is a function that always returns the {{c2::
 
 A:: (Cloze) A pure function always returns the same output for the same input and has no side effects. In contrast, an impure function may rely on external factors or cause side effects, making it less predictable.
 
-**References:**
+**References**:
 - [Read more on testable JavaScript code](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 Q:: Why is it beneficial to use pure functions for testable code?
@@ -706,7 +706,7 @@ A:: Pure functions make your code more reliable by allowing you to:
 1. Test business logic independently as isolated units.
 2. Minimize the impact of randomness and external conditions, which could reduce test reliability.
 
-**References:**
+**References**:
 - [Read more on test-driven development](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
 
 Q:: What is the benefit of using a static type checker in testing?
@@ -715,7 +715,7 @@ Q:: What is the benefit of using a static type checker in testing?
 
 A:: A static type checker enhances reliability by catching type-related errors before runtime, contributing to more robust code.
 
-**References:**
+**References**:
 - [FreeCodeCamp article on static types](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
 Q:: When should you run tests relative to making pull requests?
@@ -802,7 +802,7 @@ Q:: How should values for configuration files be supplied?
 
 A:: Use environment variables to provide values for config files, keeping configuration flexible and secure.
 
-**References:**
+**References**:
 - [Read more on configuration management](https://medium.com/@fedorHK/no-config-b3f1171eecd5)
 
 Q:: Where should scripts be placed within the project structure?
@@ -878,7 +878,7 @@ Q:: (Cloze) For projects using {{c1::FlowType}}, it's recommended to use {{c2::F
 
 A:: (Cloze) Use Flow type style check rules in ESLint for FlowType projects to ensure consistent style for Flow syntax.
 
-**References:**
+**References**:
 - [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype)
 - [FlowType documentation](https://flow.org/)
 
@@ -1012,7 +1012,7 @@ Q:: Why should collection URLs use plural nouns in API design?
 
 A:: Collection URLs should use **plural nouns** (e.g., `/users`) to improve readability and maintain URL consistency.
 
-References:
+**References**:
 - [RESTful API Design: Plural Nouns and Concrete Names](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
 
 Q:: How should plural nouns be handled in source code variables and properties?
@@ -1058,7 +1058,7 @@ A:: Use verbs for **non-resource URLs**, when the API does not return a resource
 
 > CRUD operations use HTTP methods on resource or collection URLs. These verbs are typically **Controllers**, and only a few are usually necessary.
 
-References:
+**References**:
 - [API Guidelines: Controller](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
 Q:: What is the recommended case for JSON property names in request bodies or response types?
@@ -1109,7 +1109,7 @@ http://api.domain.com/v1/schools/3/students
 
 > When APIs are public, versioning helps manage changes that may affect third-party services, allowing updates without breaking existing implementations.
 
-References:
+**References**:
 - [RESTful API Design Tips: Versioning](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
 Q:: (Cloze) An effective error message response in an API should include a {{c1::code}}, a {{c2::message}}, and a {{c3::description}}. For validation errors, it should also include an {{c4::errors}} array with detailed information on each error.
@@ -1187,7 +1187,7 @@ Q:: Why is it important to use familiar HTTP status codes in API responses?
 
 A:: Using **common HTTP status codes** is essential because most developers do not memorize all 70+ HTTP status codes. Relying on common codes helps prevent developers from needing to look up meanings, thus keeping their workflow efficient. Most API providers use a **limited subset of codes** for consistency and ease of use.
 
-References:
+**References**:
 - [Using Standard HTTP Status Codes](https://apigee.com/about/blog/technology/restful-api-design-what-about-errors)
 
 Q:: How should security exception messages be handled in API responses?
@@ -1202,7 +1202,7 @@ Q:: Why avoid using basic authentication without HTTPS?
 
 A:: Basic authentication should be avoided over unsecured connections because it sends the **user ID and password in clear text** (encoded in base64, which is reversible). Without HTTPS, this information can be easily intercepted, compromising security.
 
-References:
+**References**:
 - [Basic Authentication and HTTPS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 
 Q:: How should authentication tokens be handled in API requests?
@@ -1247,7 +1247,7 @@ Q:: What security enhancements can HTTP headers provide for APIs?
 
 A:: Setting **HTTP headers** properly can help secure your API by controlling what information is shared. The Helmet project offers a set of middleware for Express applications to set headers that enhance security.
 
-References:
+**References**:
 - [Helmet for HTTP Header Security](https://github.com/helmetjs/helmet)
 
 Q:: How should data validation be handled in APIs?
@@ -1262,7 +1262,7 @@ Q:: Where can you find a comprehensive API security checklist?
 
 A:: The **API Security Checklist Project** offers a detailed list of best practices to secure APIs effectively.
 
-References:
+**References**:
 - [API Security Checklist Project on GitHub](https://github.com/shieldfy/API-Security-Checklist)
 
 Q:: What should be included in the API Reference section of the README.md file?
@@ -1271,7 +1271,7 @@ Q:: What should be included in the API Reference section of the README.md file?
 
 A:: The **API Reference section** in the README.md should include a complete overview of the API, detailing authentication methods, URL structure, request types, and endpoint information.
 
-References:
+**References**:
 - [README.md Template](https://github.com/elsewhencode/project-guidelines/blob/master/README.sample.md)
 
 Q:: How should API authentication methods be documented?
@@ -1355,7 +1355,7 @@ Q:: (Cloze) Two popular open-source tools for API documentation are {{c1::API Bl
 
 A:: (Cloze) These tools support standardized, clear API documentation.
 
-References:
+**References**:
 - [API Blueprint](https://apiblueprint.org/)
 - [Swagger](https://swagger.io/)
 
@@ -1384,7 +1384,7 @@ Q:: Why is it important to consider accessibility at the start of a web project?
 
 A:: Web content is **accessible by default**, but adding complex features can compromise this accessibility. It's much easier to maintain accessibility by planning for it from the beginning, rather than re-implementing features later.
 
-References:
+**References**:
 - [Accessible HTML](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
 
 Q:: What tools are recommended for regular accessibility audits?
@@ -1405,7 +1405,7 @@ Q:: (Cloze) The scoring in accessibility audit tools like Lighthouse and axe is 
 
 A:: (Cloze) These assessments help determine the **severity and impact** of accessibility issues.
 
-References:
+**References**:
 - [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules)
 
 Q:: What important accessibility checks must be done manually?
@@ -1414,7 +1414,7 @@ Q:: What important accessibility checks must be done manually?
 
 A:: Accessibility checks that must be done manually include **logical tab order** and other user-interaction elements. These are often listed as **manual/guided tests** in accessibility tools like Lighthouse and axe.
 
-References:
+**References**:
 - [Manual Accessibility Checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check)
 
 Q:: What are some recommended accessibility linters for different frameworks?
