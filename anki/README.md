@@ -1382,33 +1382,40 @@ Q:: Why is it important to consider accessibility at the start of a web project?
 
 ###### ID138
 
-A:: Web content is [accessible by default](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML), but we often compromise this when building complex features. It's much easier to maintain accessibility by considering it from the start rather than re-implementing features later.
+A:: Web content is **accessible by default**, but adding complex features can compromise this accessibility. It's much easier to maintain accessibility by planning for it from the beginning, rather than re-implementing features later.
+
+References:
+- [Accessible HTML](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
 
 Q:: What tools are recommended for regular accessibility audits?
 
 ###### ID139
 
-A:: Two recommended tools for regular accessibility audits are:
+A:: Recommended tools for regular accessibility audits include:
 
-1. [Lighthouse accessibility](https://developers.google.com/web/tools/lighthouse#devtools) in Google Chrome DevTools
+1. **Lighthouse accessibility** in Google Chrome DevTools
+   - [Lighthouse accessibility](https://developers.google.com/web/tools/lighthouse#devtools)
 
-2. The [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US)
+2. **axe DevTools extension**
+   - [axe DevTools extension](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd?hl=en-US)
 
 Q:: (Cloze) The scoring in accessibility audit tools like Lighthouse and axe is based on {{c1::axe user impact assessments}}.
 
 ###### ID140
 
-A:: (Cloze) These assessments help determine the severity and impact of accessibility issues.
+A:: (Cloze) These assessments help determine the **severity and impact** of accessibility issues.
 
-[axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules)
+References:
+- [axe user impact assessments](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules)
 
 Q:: What important accessibility checks must be done manually?
 
 ###### ID141
 
-A:: Some important accessibility checks that must be done manually include logical tab order. These are often listed as manual/guided tests alongside automated results in tools like Lighthouse and axe.
+A:: Accessibility checks that must be done manually include **logical tab order** and other user-interaction elements. These are often listed as **manual/guided tests** in accessibility tools like Lighthouse and axe.
 
-[Read more...](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check)
+References:
+- [Manual Accessibility Checks](https://web.dev/lighthouse-accessibility/#additional-items-to-manually-check)
 
 Q:: What are some recommended accessibility linters for different frameworks?
 
@@ -1416,33 +1423,30 @@ Q:: What are some recommended accessibility linters for different frameworks?
 
 A:: Recommended accessibility linters for different frameworks include:
 
-- React: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
-
-- Angular: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
-
-- Vue: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
+- **React**: [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+- **Angular**: [Angular Codelyzer](https://github.com/mgechev/codelyzer)
+- **Vue**: [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility)
 
 Q:: Why is it beneficial to use an accessibility linter in a project?
 
 ###### ID143
 
-A:: An accessibility linter automatically checks that a basic level of accessibility is met by your project and is relatively easy to set up.
+A:: An **accessibility linter** helps ensure that a basic level of accessibility is consistently met in your project. It's also relatively easy to set up and integrate into a development workflow.
 
 Q:: (Cloze) For accessibility testing, it's recommended to set up and use {{c1::[axe-core](https://www.youtube.com/watch?v=-n5Ul7WPc3Y&list=PLMlWGnpsViOMt24a-Y_dybv68H-kj6Un6&t=1649s)}} or similar tools. If using Storybook, you can implement {{c2::[accessibility testing with Storybook](https://storybook.js.org/blog/accessibility-testing-with-storybook/)}}.
 
 ###### ID144
 
-A:: (Cloze) Including accessibility checks in your tests helps catch any changes that affect your project's accessibility and audit score.
+A:: (Cloze) Including **accessibility checks** in your tests ensures that any changes affecting your project's accessibility and **audit score** are identified.
 
 Q:: What are some examples of accessible design systems?
 
 ###### ID145
 
-A:: Two examples of accessible design systems are:
+A:: Examples of accessible design systems include:
 
-1. [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/)
-
-2. [Material Design](https://material.io/design)
+1. **React Spectrum** - [React Spectrum](https://react-spectrum.adobe.com/react-spectrum/)
+2. **Material Design** - [Material Design](https://material.io/design)
 
 Q:: Why is it beneficial to use an accessible design system?
 
