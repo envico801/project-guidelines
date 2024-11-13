@@ -1452,49 +1452,49 @@ Q:: Why is it beneficial to use an accessible design system?
 
 ###### ID146
 
-A:: Accessible design systems provide components that are highly accessible out of the box, making it easier to maintain accessibility throughout your project.
+A:: Accessible design systems provide components that are **highly accessible by default**, making it easier to maintain accessibility throughout your project.
 
 Q:: What should be considered when agreeing on a minimum accessibility score for a project?
 
 ###### ID147
 
-A:: When agreeing on a minimum accessibility score, consider your project's specific requirements. The score should be based on the results from tools like Lighthouse or axe, which use axe user impact assessments to determine the severity of accessibility issues.
+A:: When setting a minimum accessibility score, consider your project’s specific requirements. The score should be based on results from tools like **Lighthouse** or **axe**, which use **axe user impact assessments** to evaluate the severity of accessibility issues.
 
 Q:: Why is it important to ensure link names are accessible?
 
 ###### ID148
 
-A:: Inaccessible link elements pose barriers to accessibility. Using aria-label to describe links can help make them more accessible to users relying on assistive technologies.
+A:: Inaccessible link elements create barriers to usability. Using **aria-labels** to describe links helps make them more accessible to users relying on assistive technologies.
 
 Q:: How should lists be structured for accessibility?
 
 ###### ID149
 
-A:: Lists must have both parent and child elements to be valid. This is important because screen readers inform users when they come to a list and how many items are in the list.
+A:: Lists should have **both parent and child elements** to be valid. Screen readers inform users when they encounter a list and announce the number of items, making proper list structure important for accessibility.
 
 Q:: Why is the correct semantic structure of headings important for accessibility?
 
 ###### ID150
 
-A:: Headers convey the structure of the page. When applied correctly, the page becomes easier to navigate, especially for users relying on screen readers or other assistive technologies.
+A:: Headings convey the **structure of the page**. Correct use of headings makes the page easier to navigate, especially for users relying on screen readers or other assistive technologies.
 
 Q:: (Cloze) Ensuring text elements have {{c1::sufficient contrast}} against the page background is important because some people with {{c2::low vision}} experience {{c3::low contrast}}, making it difficult to distinguish {{c4::outlines, borders, edges, and details}}.
 
 ###### ID151
 
-A:: (Cloze) Text that is too close in luminance (brightness) to the background can be hard to read for these users.
+A:: (Cloze) Text with low contrast against the background can be hard to read for people with low vision or other visual impairments.
 
 Q:: Why is it necessary to provide alternative text for images?
 
 ###### ID152
 
-A:: Screen readers have no way of translating an image into words that get read to the user, even if the image only consists of text. Therefore, it's necessary for images to have short, descriptive alt text so screen reader users can clearly understand the image's contents and purpose.
+A:: Screen readers cannot interpret images. Providing **short, descriptive alt text** allows screen reader users to understand the contents and purpose of images, even if they only contain text.
 
 Q:: Where can more accessibility rules be found?
 
 ###### ID153
 
-A:: More accessibility rules can be found at [Deque University's axe rules](https://dequeuniversity.com/rules/axe).
+A:: More accessibility rules are available at **[Deque University’s axe rules](https://dequeuniversity.com/rules/axe)**.
 
 #### Chapter 11 - Licensing
 
