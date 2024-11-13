@@ -273,7 +273,7 @@ Q:: (Cloze) When making changes in Git, you should use {{c1::git add <file1> <fi
 A:: (Cloze) `git add <file1> <file2> ...` - You should add only files that make up a small, coherent change. `git commit` starts an editor where you can separate the subject from the body.
 
 References:
-- *Section 1.3* for more information on commit structuring.
+- *[Section 1.3](https://github.com/elsewhencode/project-guidelines#13-writing-good-commit-messages)* for more information on commit structuring.
 
 Q:: What Git command allows you to review each change before committing?
 
@@ -545,15 +545,20 @@ Q:: (Cloze) To ensure consistent dependencies across a team, use {{c1::package-l
 
 ###### ID43
 
-A:: (Cloze) This ensures that team members get the exact same dependencies, making the code behave as expected and identical in any development machine. [read more...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+A:: (Cloze) To maintain consistent dependencies, use `package-lock.json` with `npm@5` or higher, or alternatively use Yarn. This guarantees that all team members have the exact same dependencies, ensuring uniform code behavior across development environments.
 
-[yarn](https://yarnpkg.com/en/)
+**References:**
+- [Guide to consistent dependencies across teams](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+- [Yarn package manager](https://yarnpkg.com/en/)
 
-Q:: For older versions of npm, how can you ensure consistent dependencies?
+Q:: How can you ensure consistent dependencies when using older versions of npm?
 
 ###### ID44
 
-A:: For older versions of npm, use `—save --save-exact` when installing a new dependency and create `npm-shrinkwrap.json` before publishing. [read more...](https://docs.npmjs.com/files/package-locks)
+A:: For older versions of npm, use `--save --save-exact` when installing a new dependency and create an `npm-shrinkwrap.json` file before publishing. This will lock dependencies to specific versions, similar to `package-lock.json` in newer npm versions.
+
+**References:**
+- [npm documentation on package locks](https://docs.npmjs.com/files/package-locks)
 
 #### Chapter 4 - Dependencies
 
