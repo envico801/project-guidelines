@@ -952,23 +952,23 @@ A:: Using Prettier with a precommit hook, along with `lint-staged` and `husky`, 
 
 ![logging](../images/logging.png)
 
-Q:: Why should you avoid client-side console logs in production?
+Q:: Why is it important to avoid client-side console logs in production?
 
 ###### ID95
 
-A:: Even though your build process can (and should) get rid of them, it's important to ensure that your code style checker warns you about leftover console logs. This helps prevent unintended logging in production environments.
+A:: Avoid client-side console logs in production. While the build process should remove them, it's essential to have code style checks that flag any leftover console logs, preventing unintentional logging in production.
 
-Q:: What is the recommended approach for production logging?
+Q:: What is the recommended method for logging in production environments?
 
 ###### ID96
 
-A:: It's recommended to use logging libraries for production mode, such as [winston](https://github.com/winstonjs/winston) or [node-bunyan](https://github.com/trentm/node-bunyan). These libraries help produce readable production logging.
+A:: Use logging libraries like [winston](https://github.com/winstonjs/winston) or [node-bunyan](https://github.com/trentm/node-bunyan) for production logging. These tools enhance readability and manage logs more effectively than console logs.
 
-Q:: What are the benefits of using logging libraries in production?
+Q:: What are the advantages of using logging libraries in production?
 
 ###### ID97
 
-A:: Using logging libraries makes troubleshooting less unpleasant by providing features such as colorization, timestamps, logging to a file in addition to the console, or even logging to a file that rotates daily. [Read more...](https://blog.risingstack.com/node-js-logging-tutorial/)
+A:: Logging libraries improve the troubleshooting experience by offering features like colorization, timestamps, file-based logging alongside console logging, and even daily log rotation. [Read more on logging best practices](https://blog.risingstack.com/node-js-logging-tutorial/).
 
 #### Chapter 9 - API
 
