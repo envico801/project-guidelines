@@ -374,31 +374,35 @@ Q:: (Cloze) When writing a commit message, limit the subject line to {{c1::50 ch
 
 ###### ID21
 
-A:: (Cloze) Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [read more...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
+A:: (Cloze) Limit the subject line to `50 characters` and wrap the body at `72 characters`. Keep commits focused and avoid verbosity.
 
-Q:: What are the rules for formatting the subject line of a commit message?
+**References:**
+- [The 50/72 rule for commit messages](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
+
+Q:: What are the formatting rules for a commit message subject line?
 
 ###### ID22
 
-A:: The rules for formatting the subject line of a commit message are:
+A:: Follow these rules for the subject line of a commit message:
 
-1. Capitalize the subject line.
+1. Capitalize the first word.
+2. Avoid ending with a period.
+3. Use the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood).
 
-2. Do not end the subject line with a period.
-
-3. Use [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood) in the subject line.
-
-Q:: Why should you use imperative mood in the subject line of a commit message?
+Q:: Why is it important to use imperative mood in commit message subject lines?
 
 ###### ID23
 
-A:: Rather than writing messages that say what a committer has done, it's better to consider these messages as the instructions for what is going to be done after the commit is applied on the repository. [read more...](https://news.ycombinator.com/item?id=2079612)
+A:: The imperative mood frames the commit message as an instruction for what will happen after it’s applied, rather than a record of what was done.
 
-Q:: What should be the focus of the body of a commit message?
+**References:**
+- [Why use imperative mood in commit messages](https://news.ycombinator.com/item?id=2079612)
+
+Q:: What should the commit message body focus on explaining?
 
 ###### ID24
 
-A:: Use the body to explain **what** and **why** as opposed to **how**.
+A:: The body of a commit message should explain **what** and **why** changes are made, rather than focusing on **how** they were implemented.
 
 #### Chapter 2 - Documentation
 
