@@ -829,7 +829,7 @@ Q:: Why should build output not be committed to the remote repository?
 
 A:: Generated files should be reproducible by any team member, so there’s no need to commit them to the remote repository unless specifically required.
 
-#### Chapter 7 - Code style
+#### Chapter 7 - Code Style
 
 ![code-style](../images/code-style.png)
 
@@ -837,67 +837,68 @@ Q:: What JavaScript syntax is recommended for new projects?
 
 ###### ID77
 
-A:: Use stage-2 and higher JavaScript (modern) syntax for new projects. For old projects, stay consistent with existing syntax unless you intend to modernize the project.
+A:: Use stage-2 or higher (modern) JavaScript syntax for new projects. For older projects, remain consistent with the existing syntax unless you intend to modernize the project.
 
-Q:: Why is it recommended to use stage-2 and higher JavaScript syntax?
+Q:: Why should stage-2 and higher JavaScript syntax be used?
 
 ###### ID78
 
-A:: Stage-2 syntax is more likely to eventually become part of the spec with only minor revisions. Transpilers can be used to take advantage of new syntax features.
+A:: Stage-2 syntax is more stable and likely to become part of the official JavaScript specification, often with minor changes. Transpilers allow projects to leverage these features even before full browser support.
 
 Q:: (Cloze) Code style checks should be included in your {{c1::build process}}.
 
 ###### ID79
 
-A:: (Cloze) Breaking your build is one way of enforcing code style. It prevents you from taking it less seriously. Do it for both client and server-side code. [read more...](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+A:: (Cloze) Code style checks should be part of your build process. Enforcing style checks in builds ensures consistency across client and server-side code. [Learn more](https://www.robinwieruch.de/react-eslint-webpack-babel/)
 
-Q:: What tool is recommended to enforce code style in JavaScript?
+Q:: What tool is recommended to enforce JavaScript code style?
 
 ###### ID80
 
-A:: [ESLint - Pluggable JavaScript linter](http://eslint.org/) is recommended to enforce code style.
+A:: Use [ESLint - Pluggable JavaScript linter](http://eslint.org/) to enforce code style in JavaScript projects.
 
 Q:: Why is ESLint preferred for enforcing code style?
 
 ###### ID81
 
-A:: ESLint has more rules supported, the ability to configure the rules, and the ability to add custom rules.
+A:: ESLint offers extensive support for rules, customization options, and custom rule additions, making it highly flexible for enforcing code style.
 
 Q:: Which JavaScript Style Guide is recommended?
 
 ###### ID82
 
-A:: The [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) is recommended.
+A:: The [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) is recommended for consistency and best practices.
 
-[Read more](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)
+**Additional Resources:**
+- [More on Airbnb’s guide](https://www.gitbook.com/book/duk/airbnb-javascript-guidelines/details)
 
 Q:: (Cloze) For projects using {{c1::FlowType}}, it's recommended to use {{c2::Flow type style check rules}} for {{c3::ESLint}}.
 
 ###### ID83
 
-A:: (Cloze) Flow introduces few syntaxes that also need to follow certain code style and be checked.
+A:: (Cloze) Use Flow type style check rules in ESLint for FlowType projects to ensure consistent style for Flow syntax.
 
-[Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype)
+**References:**
+- [Flow type style check rules for ESLint](https://github.com/gajus/eslint-plugin-flowtype)
+- [FlowType documentation](https://flow.org/)
 
-[FlowType](https://flow.org/)
-
-Q:: What is the purpose of using a `.eslintignore` file?
+Q:: What is the purpose of the `.eslintignore` file?
 
 ###### ID84
 
-A:: The `.eslintignore` file is used to exclude files or folders from code style checks without polluting your code with `eslint-disable` comments.
+A:: Use the `.eslintignore` file to exclude specific files or folders from code style checks, avoiding the need for `eslint-disable` comments within the code.
 
-Q:: What should be done with `eslint` disable comments before making a Pull Request?
+Q:: What should be done with `eslint` disable comments before submitting a Pull Request?
 
 ###### ID85
 
-A:: Remove any of your `eslint` disable comments before making a Pull Request.
+A:: Remove all `eslint` disable comments before submitting a Pull Request to maintain code quality and style standards.
 
 Q:: How should small tasks be marked in the code?
 
 ###### ID86
 
-A:: Use `//TODO:` comments for small tasks. For larger tasks, use `//TODO(#3456)` where the number is an open ticket.
+A:: Use `//TODO:` comments for small tasks. For larger tasks, use `//TODO(#3456)`, where the number corresponds to an open ticket for tracking.
 
 Q:: (Cloze) Comments should be {{c1::kept relevant}} as code changes, and {{c2::commented blocks of code}} should be {{c3::removed}}.
 
