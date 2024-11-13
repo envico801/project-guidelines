@@ -974,105 +974,98 @@ A:: Logging libraries improve the troubleshooting experience by offering feature
 
 ![api](../images/api.png)
 
-Q:: What are the three main factors in resource-oriented design for APIs?
+Q:: What are the core components of resource-oriented design for APIs?
 
 ###### ID98
 
-A:: The three main factors in resource-oriented design are:
+A:: The three main components in resource-oriented design are:
 
-1. Resources (which have data, can be nested, and have methods that operate against them)
+1. **Resources**: These have data, can be nested, and have methods that operate on them.
+2. **Collections**: Groups of resources.
+3. **URLs**: Identifiers for the online location of resources or collections.
 
-2. Collections (groups of resources)
-
-3. URLs (which identify the online location of resources or collections)
-
-Q:: Why is resource-oriented design beneficial for API development?
+Q:: How does resource-oriented design benefit API development?
 
 ###### ID99
 
-A:: Resource-oriented design is beneficial because:
+A:: Resource-oriented design is beneficial for several reasons:
 
-1. It's well-known to developers (the main API consumers)
+1. It is **well-known to developers**, the main consumers of APIs.
+2. It enhances **readability and ease of use**.
+3. It enables **generic libraries and connectors** without needing to know the specific API structure.
 
-2. It offers readability and ease of use
-
-3. It allows for writing generic libraries and connectors without knowing the specifics of the API
-
-Q:: What case should be used for URLs and resource names in API design?
+Q:: What naming case should be used for URLs and resource names in API design?
 
 ###### ID100
 
-A:: Use kebab-case for URLs and plural kebab-case for resource names in URLs.
+A:: Use **kebab-case** for URLs and **plural kebab-case** for resource names in URLs.
 
-Q:: What case should be used for parameters in the query string or resource fields?
+Q:: Which case is recommended for parameters in query strings or resource fields?
 
 ###### ID101
 
-A:: Use camelCase for parameters in the query string or resource fields.
+A:: Use **camelCase** for parameters in query strings or resource fields.
 
-Q:: Why should plural nouns be used for naming URLs pointing to collections?
+Q:: Why should collection URLs use plural nouns in API design?
 
 ###### ID102
 
-A:: Plural nouns should be used for naming URLs pointing to collections (e.g., `/users`) because it reads better and keeps URLs consistent. [Read more...](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+A:: Collection URLs should use **plural nouns** (e.g., `/users`) to improve readability and maintain URL consistency.
 
-Q:: How should plurals be handled in source code for variables and properties?
+References:
+- [RESTful API Design: Plural Nouns and Concrete Names](https://apigee.com/about/blog/technology/restful-api-design-plural-nouns-and-concrete-names)
+
+Q:: How should plural nouns be handled in source code variables and properties?
 
 ###### ID103
 
-A:: In the source code, convert plurals to variables and properties with a List suffix. This is because plural is nice in the URL, but in the source code, it's too subtle and error-prone.
+A:: In the source code, convert plurals to variables and properties with a **List suffix**. Plural naming in URLs is clear, but it can be subtle and error-prone in code.
 
-Q:: What is the recommended format for URLs pointing to a specific resource?
+Q:: What is the best format for URLs that point to a specific resource?
 
 ###### ID104
 
-A:: Always use a singular concept that starts with a collection and ends with an identifier, for example:
+A:: Use a singular resource that starts with a **collection** and ends with an **identifier**, like:
 
 ```
-
 /students/245743
-
 /airports/kjfk
-
 ```
 
-Avoid URLs like this:
+Avoid formats like:
 
 ```
 GET /blogs/:blogId/posts/:postId/summary
 ```
 
-Why
+> This structure does not point to a resource but to a property. Instead, pass the property as a parameter to simplify responses.
 
-> This is not pointing to a resource but to a property instead. You can pass the property as a parameter to trim your response.
-
-Q:: (Cloze) In API design, it's recommended to keep {{c1::verbs}} out of your {{c2::resource URLs}} because using a verb for each resource operation can lead to {{c3::a huge list of URLs}} and {{c4::no consistent pattern}}.
+Q:: (Cloze) In API design, it’s recommended to keep {{c1::verbs}} out of your {{c2::resource URLs}} because including verbs for each operation can lead to {{c3::a large number of URLs}} and {{c4::lack of a consistent pattern}}.
 
 ###### ID105
 
-A:: (Cloze) This makes it difficult for developers to learn the API. Verbs are used for something else in API design.
+A:: (Cloze) Keeping verbs out of resource URLs helps **developers learn the API** more easily. In API design, verbs serve a different function.
 
-Q:: When is it appropriate to use verbs in API URLs?
+Q:: When should verbs be used in API URLs?
 
 ###### ID106
 
-A:: Use verbs for non-resources, when your API doesn't return any resources but instead executes an operation and returns the result. These are not CRUD operations. For example:
+A:: Use verbs for **non-resource URLs**, when the API does not return a resource but instead performs an operation, returning the result. These are not CRUD operations. For example:
 
 ```
-
 /translate?text=Hallo
-
 ```
 
-Why
+> CRUD operations use HTTP methods on resource or collection URLs. These verbs are typically **Controllers**, and only a few are usually necessary.
 
-> Because for CRUD we use HTTP methods on `resource` or `collection` URLs. The verbs we were talking about are actually `Controllers`. You usually don't develop many of these. [read more...](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
+References:
+- [API Guidelines: Controller](https://github.com/byrondover/api-guidelines/blob/master/Guidelines.md#controller)
 
-Q:: What case should be used for JSON property names in request bodies or response types?
+Q:: What is the recommended case for JSON property names in request bodies or response types?
 
 ###### ID107
 
-A:: Follow `camelCase` for `JSON` property names in request bodies or response types to maintain consistency. This is because these guidelines assume JavaScript is used for generating and parsing JSON.
+A:: Use **camelCase** for JSON property names in request bodies and response types to maintain consistency, as these guidelines assume JavaScript will be used to generate and parse JSON.
 
 Q:: Why should you avoid using table_name for a resource name and column_name for resource properties in API design?
 
