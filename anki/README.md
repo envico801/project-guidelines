@@ -1067,67 +1067,58 @@ Q:: What is the recommended case for JSON property names in request bodies or re
 
 A:: Use **camelCase** for JSON property names in request bodies and response types to maintain consistency, as these guidelines assume JavaScript will be used to generate and parse JSON.
 
-Q:: Why should you avoid using table_name for a resource name and column_name for resource properties in API design?
+Q:: Why avoid using table names and column names for resource names and properties in APIs?
 
 ###### ID108
 
-A:: Because your intention is to expose Resources, not your database schema details. This abstraction helps maintain separation between your API design and database structure.
+A:: Avoid using `table_name` for resource names and `column_name` for resource properties because the API should expose **resources**, not the underlying **database schema**. This abstraction maintains separation between API design and database structure.
 
-Q:: How should CRUD functionalities be explained using HTTP methods in API design?
+Q:: How should CRUD operations be represented with HTTP methods in API design?
 
 ###### ID109
 
-A:: CRUD functionalities should be explained using HTTP methods as follows:
+A:: Represent CRUD operations using HTTP methods as follows:
 
-- GET: To retrieve a representation of a resource
+- **GET**: Retrieve a representation of a resource.
+- **POST**: Create new resources or sub-resources.
+- **PUT**: Update existing resources.
+- **PATCH**: Partially update existing resources, only for the fields supplied.
+- **DELETE**: Delete existing resources.
 
-- POST: To create new resources and sub-resources
-
-- PUT: To update existing resources
-
-- PATCH: To update existing resources, only updating the fields that were supplied
-
-- DELETE: To delete existing resources
-
-Q:: How should nested resources be represented in API URLs?
+Q:: What is the recommended way to structure URLs for nested resources?
 
 ###### ID110
 
-A:: For nested resources, use the relation between them in the URL. For example:
+A:: For nested resources, use URLs that represent the relationship between them. Examples:
 
-> `GET /schools/2/students ` , should get the list of all students from school 2.
+- `GET /schools/2/students` retrieves the list of all students from school with ID 2.
+- `GET /schools/2/students/31` retrieves details of student 31, who belongs to school 2.
+- `DELETE /schools/2/students/31` deletes student 31 from school 2.
+- `PUT /schools/2/students/31` updates information for student 31. Use `PUT` only on resource URLs, not collections.
+- `POST /schools` creates a new school and returns details of the newly created school. Use `POST` on collection URLs.
 
-> `GET /schools/2/students/31` , should get the details of student 31, which belongs to school 2.
-
-> `DELETE /schools/2/students/31` , should delete student 31, which belongs to school 2.
-
-> `PUT /schools/2/students/31` , should update info of student 31, Use PUT on resource-URL only, not collection.
-
-> `POST /schools` , should create a new school and return the details of the new school created. Use POST on collection-URLs.
-
-Q:: What is the recommended approach for versioning APIs in the URL?
+Q:: How should API versioning be handled in URLs?
 
 ###### ID111
 
-A:: Use a simple ordinal number for a version with a `v` prefix (v1, v2). Move it all the way to the left in the URL so that it has the highest scope. For example:
+A:: Use a **simple ordinal number with a "v" prefix** (e.g., `v1`, `v2`) for versioning, and place it at the beginning of the URL to give it the **highest scope**. For example:
 
 ```
-
 http://api.domain.com/v1/schools/3/students
-
 ```
 
-Why
+> When APIs are public, versioning helps manage changes that may affect third-party services, allowing updates without breaking existing implementations.
 
-> When your APIs are public for other third parties, upgrading the APIs with some breaking change would also lead to breaking the existing products or services using your APIs. Using versions in your URL can prevent that from happening. [read more...](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
+References:
+- [RESTful API Design Tips: Versioning](https://apigee.com/about/blog/technology/restful-api-design-tips-versioning)
 
-Q:: (Cloze) A good error message response in an API should include a {{c1::code}}, a {{c2::message}}, and a {{c3::description}}. For validation errors, it should also include an {{c4::errors}} array with details for each error.
+Q:: (Cloze) An effective error message response in an API should include a {{c1::code}}, a {{c2::message}}, and a {{c3::description}}. For validation errors, it should also include an {{c4::errors}} array with detailed information on each error.
 
 ###### ID112
 
-A:: (Cloze) This structure helps developers troubleshoot and resolve issues when using your APIs.
+A:: (Cloze) Providing structured error responses helps developers troubleshoot issues. 
 
-A good error message response might look something like this:
+An example error message might look like:
 
 ```json
 {
@@ -1137,7 +1128,7 @@ A good error message response might look something like this:
 }
 ```
 
-or for validation errors:
+Or for validation errors:
 
 ```json
 {
@@ -1158,47 +1149,37 @@ or for validation errors:
 }
 ```
 
-Q:: What are some important HTTP status codes to use in API responses, and what do they indicate?
+Q:: What are key HTTP status codes to use in API responses, and what do they indicate?
 
 ###### ID113
 
-A:: Some important HTTP status codes include:
+A:: Important HTTP status codes include:
 
-> `200 OK` response represents success for `GET`, `PUT` or `POST` requests.
+- **200 OK**: Success for `GET`, `PUT`, or `POST` requests.
+- **201 Created**: Indicates a new resource was successfully created (used with `POST`).
+- **204 No Content**: Success with no content to send in the response (common for successful `DELETE`).
+- **304 Not Modified**: Used to reduce data transfer when the recipient has a cached version.
+- **400 Bad Request**: The request could not be processed due to client error.
+- **401 Unauthorized**: Request lacks valid credentials; should prompt re-authentication.
+- **403 Forbidden**: The server understood the request but refuses authorization.
+- **404 Not Found**: Indicates the requested resource does not exist.
+- **500 Internal Server Error**: A valid request could not be fulfilled due to server issues.
 
-> `201 Created` for when a new instance is created. Creating a new instance, using `POST` method returns `201` status code.
-
-> `204 No Content` response represents success but there is no content to be sent in the response. Use it when `DELETE` operation succeeds.
-
-> `304 Not Modified` response is to minimize information transfer when the recipient already has cached representations.
-
-> `400 Bad Request` for when the request was not processed, as the server could not understand what the client is asking for.
-
-> `401 Unauthorized` for when the request lacks valid credentials and it should re-request with the required credentials.
-
-> `403 Forbidden` means the server understood the request but refuses to authorize it.
-
-> `404 Not Found` indicates that the requested resource was not found.
-
-> `500 Internal Server Error` indicates that the request is valid, but the server could not fulfill it due to some unexpected condition.
-
-Q:: How can you limit the amount of data returned in an API response?
+Q:: How can data returned in an API response be limited?
 
 ###### ID114
 
-A:: Use a fields query parameter that takes a comma-separated list of fields to include. For example:
+A:: Use a **fields query parameter** to specify a comma-separated list of fields to include. For example:
 
 ```
-
 GET /students?fields=id,name,age,class
-
 ```
 
-Q:: (Cloze) When designing APIs, it's recommended to provide {{c1::total numbers of resources}} in your response and accept {{c2::limit}} and {{c3::offset}} parameters for {{c4::pagination}}.
+Q:: (Cloze) In API design, it’s recommended to provide {{c1::total numbers of resources}} in your response and to accept {{c2::limit}} and {{c3::offset}} parameters for {{c4::pagination}}.
 
 ###### ID115
 
-A:: (Cloze) Additionally, filtering and sorting don't need to be supported from the start for all resources, but should be documented for resources that offer these features.
+A:: (Cloze) For resources that support filtering and sorting, document these capabilities, although they need not be available for all resources at the start.
 
 Q:: Why is it important to use common HTTP status codes in API responses?
 
