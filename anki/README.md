@@ -904,49 +904,49 @@ Q:: (Cloze) Comments should be {{c1::kept relevant}} as code changes, and {{c2::
 
 ###### ID87
 
-A:: (Cloze) Your code should be as readable as possible, you should get rid of anything distracting. If you refactored a function, don't just comment out the old one, remove it.
+A:: (Cloze) Comments should be kept relevant as code changes, and commented blocks of code should be removed. Code should be as readable as possible without distractions. If a function is refactored, remove the old code instead of commenting it out.
 
-Q:: Why should irrelevant or funny comments, logs, or naming be avoided?
+Q:: Why should irrelevant or humorous comments, logs, or names be avoided?
 
 ###### ID88
 
-A:: While your build process may (should) get rid of them, sometimes your source code may get handed over to another company/client and they may not share the same banter.
+A:: Avoid irrelevant or humorous comments, logs, or naming. While these may be removed during the build process, source code might be handed to a different company or client, who may not appreciate this style.
 
-Q:: What guidelines are given for naming functions?
+Q:: What naming convention is recommended for functions?
 
 ###### ID89
 
-A:: For functions, use long, descriptive names. A function name should be a verb or a verb phrase, and it needs to communicate its intention.
+A:: Use long, descriptive names for functions. A function name should be a verb or verb phrase that clearly communicates its intention and functionality.
 
-Q:: How should functions be organized in a file?
+Q:: How should functions be organized within a file?
 
 ###### ID90
 
-A:: Organize your functions in a file according to the step-down rule. Higher level functions should be on top and lower levels below.
+A:: Organize functions in a file according to the step-down rule, placing higher-level functions at the top and lower-level functions below for readability and logical flow.
 
-Q:: What is the purpose of using a .editorconfig file in a project?
+Q:: What is the purpose of a `.editorconfig` file?
 
 ###### ID91
 
-A:: A [.editorconfig](http://editorconfig.org/) file helps developers define and maintain consistent coding styles between different editors and IDEs on the project. The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
+A:: A [.editorconfig](http://editorconfig.org/) file helps maintain consistent coding styles across different editors and IDEs within a project. It defines coding styles and integrates well with version control systems, making it easy for developers to adhere to set conventions.
 
-Q:: How can you make your editor notify you about code style errors?
+Q:: How can editors be set up to flag code style errors?
 
 ###### ID92
 
-A:: Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with your existing ESLint configuration. [Read more...](https://github.com/prettier/eslint-config-prettier#installation)
+A:: Use [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) and [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) with ESLint to integrate Prettier and receive notifications for code style issues within the editor. [Read more](https://github.com/prettier/eslint-config-prettier#installation).
 
-Q:: Why should you consider using Git hooks?
+Q:: Why consider using Git hooks in your workflow?
 
 ###### ID93
 
-A:: Git hooks greatly increase a developer's productivity. They allow you to make changes, commit and push to staging or production environments without the fear of breaking builds. [Read more...](http://githooks.com/)
+A:: Git hooks improve productivity by automating certain checks before code commits, reducing the chance of breaking builds in staging or production environments. [Learn more about Git hooks](http://githooks.com/).
 
 Q:: What is the benefit of using Prettier with a precommit hook?
 
 ###### ID94
 
-A:: While `prettier` itself can be very powerful, it's not very productive to run it simply as an npm task alone each time to format code. Using Prettier with a precommit hook, along with `lint-staged` and `husky`, can greatly enhance productivity. [Read more about configuring `lint-staged` here](https://github.com/okonet/lint-staged#configuration) and [configuring `husky` here](https://github.com/typicode/husky).
+A:: Using Prettier with a precommit hook, along with `lint-staged` and `husky`, streamlines the process of code formatting. This setup saves time, as Prettier runs automatically before each commit, ensuring code consistency across the project. [More on `lint-staged`](https://github.com/okonet/lint-staged#configuration) and [on `husky`](https://github.com/typicode/husky).
 
 #### Chapter 8 - Logging
 
