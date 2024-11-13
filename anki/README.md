@@ -564,74 +564,84 @@ A:: For older versions of npm, use `--save --save-exact` when installing a new d
 
 ![modules](../images/modules.png)
 
-Q:: How can you keep track of your currently available packages in npm?
+Q:: How can you list currently available npm packages in your project?
 
 ###### ID45
 
-A:: You can use the command `npm ls --depth=0` to list your currently available packages. [read more...](https://docs.npmjs.com/cli/ls)
+A:: You can use the command `npm ls --depth=0` to list currently available packages in your project.
 
-Q:: What tool can be used to check for unused or irrelevant packages in your project?
+**References:**
+- [npm ls command documentation](https://docs.npmjs.com/cli/ls)
+
+Q:: What tool helps identify unused or irrelevant packages in a project?
 
 ###### ID46
 
-A:: You can use the `depcheck` tool to see if any of your packages have become unused or irrelevant. [read more...](https://www.npmjs.com/package/depcheck)
+A:: Use the `depcheck` tool to check for packages that have become unused or irrelevant in your project.
 
-Q:: Why is it important to find and remove unused dependencies?
+**References:**
+- [Depcheck npm package](https://www.npmjs.com/package/depcheck)
+
+Q:: Why is it important to remove unused dependencies?
 
 ###### ID47
 
-A:: You may include an unused library in your code and increase the production bundle size. Finding unused dependencies and getting rid of them helps optimize your project.
+A:: Removing unused dependencies helps reduce the production bundle size, which improves optimization and load times.
 
-Q:: What should you check before using an npm dependency?
+Q:: What should you evaluate before adding a new npm dependency?
 
 ###### ID48
 
-A:: Before using a dependency, check its version release frequency, number of maintainers, and download statistics to see if it is heavily used by the community. You can use commands like `npm view async` or tools like `npm-stat` to get this information. More usage often means more contributors, better maintenance, and faster bug fixes.
+A:: Before using a dependency, evaluate its release frequency, number of maintainers, and download statistics to determine if it is widely used and actively maintained. This helps ensure community support, ongoing updates, and timely bug fixes.
 
-- [npm view async](https://docs.npmjs.com/cli/view) 
-- [npm-stat](https://npm-stat.com/)
+**References:**
+- [npm view command documentation](https://docs.npmjs.com/cli/view)
+- [npm-stat usage statistics](https://npm-stat.com/)
 
-Q:: Why is it important to consider the maintainer activity of a dependency?
+Q:: Why is maintainer activity crucial when selecting a dependency?
 
 ###### ID49
 
-A:: Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
+A:: Active maintainers are essential for quickly merging fixes and patches, ensuring your project can receive timely updates and improvements.
 
-Q:: What should you do if you need to use a less known dependency?
+Q:: What should you do before using a lesser-known dependency?
 
 ###### ID50
 
-A:: If a less known dependency is needed, discuss it with the team before using it.
+A:: Discuss using any lesser-known dependencies with the team to ensure alignment and evaluate potential risks or alternatives.
 
 Q:: (Cloze) To ensure your app works with the latest version of its dependencies without breaking, use the command {{c1::npm outdated}}.
 
 ###### ID51
 
-A:: (Cloze) This helps you stay up-to-date with dependency updates, which sometimes contain breaking changes. [read more...](https://docs.npmjs.com/cli/outdated)
+A:: (Cloze) Use the command `npm outdated` to verify if any dependencies need updating, which can help keep your project current with the latest patches and features.
 
-Q:: Why should you update dependencies one by one?
+**References:**
+- [npm outdated command documentation](https://docs.npmjs.com/cli/outdated)
+
+Q:: Why is it beneficial to update dependencies one at a time?
 
 ###### ID52
 
-A:: Updating dependencies one by one makes troubleshooting easier if anything goes wrong.
+A:: Updating dependencies one by one simplifies troubleshooting, making it easier to identify and resolve issues if something goes wrong.
 
-Q:: What tool can be used to facilitate updating npm packages?
+Q:: What tool can simplify the process of updating npm packages?
 
 ###### ID53
 
-A:: You can use a tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates) to facilitate updating npm packages.
+A:: The [npm-check-updates](https://github.com/tjunnone/npm-check-updates) tool can help manage npm package updates more efficiently.
 
-Q:: How can you check if a package has known security vulnerabilities?
+Q:: How can you check for security vulnerabilities in npm packages?
 
 ###### ID54
 
-A:: You can check for known security vulnerabilities in packages using tools like [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
+A:: Use tools like [Snyk](https://snyk.io/test?utm_source=risingstack_blog) to scan for known security vulnerabilities in npm packages.
 
 Q:: (Cloze) When updating dependencies, it's important to always check their {{c1::release notes}} when updates show up to be aware of potential {{c2::breaking changes}}.
 
 ###### ID55
 
-A:: (Cloze) This practice helps you anticipate and address any issues that might arise from updating dependencies.
+A:: (Cloze) Always review dependency release notes to be aware of potential breaking changes. This helps you anticipate and handle compatibility issues that may arise from updates.
 
 #### Chapter 5 - Testing
 
