@@ -4,7 +4,13 @@
 
 ========== Answer ==========  
 
-(Cloze) This ensures that team members get the exact same dependencies, making the code behave as expected and identical in any development machine. [read more...](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+(Cloze) To maintain consistent dependencies, use `package-lock.json` with `npm@5` or higher, or alternatively use Yarn. This guarantees that all team members have the exact same dependencies, ensuring uniform code behavior across development environments.
+
+**References**:
+
+-   [Guide to consistent dependencies across teams](https://kostasbariotis.com/consistent-dependencies-across-teams/)
+
+-   [Yarn package manager](https://yarnpkg.com/en/)
 
 ========== Id ==========  
 43

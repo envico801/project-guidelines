@@ -1,17 +1,21 @@
 ========== Question ==========  
 
-### What is the purpose of interactive rebasing in the Git workflow?  
+### What is the purpose of interactive rebasing in Git?  
 
 ========== Answer ==========  
 
-Interactive rebasing is used to update your feature branch with the latest changes from develop. You can use the following commands:
+Interactive rebasing updates your feature branch with the latest changes from `develop`. Use:
 
 ```sh
 git checkout <branchname>
 git rebase -i --autosquash develop
 ```
 
-You can use --autosquash to squash all your commits to a single commit. Nobody wants many commits for a single feature in develop branch. [read more...](https://robots.thoughtbot.com/autosquashing-git-commits)
+The `--autosquash` option combines all commits into a single one. This keeps the `develop` branch cleaner and avoids multiple commits for one feature.
+
+**References**:
+
+-   [Interactive rebasing with autosquash](https://robots.thoughtbot.com/autosquashing-git-commits)
 
 ========== Id ==========  
 15

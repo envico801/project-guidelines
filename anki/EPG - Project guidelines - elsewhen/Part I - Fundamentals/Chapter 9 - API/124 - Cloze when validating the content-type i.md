@@ -1,10 +1,10 @@
 ========== Cloze Question ==========
 
-###  When validating the content-type in API requests, it's recommended to mostly use {{c1::application/*json}}. Accepting other mime types like {{c2::application/x-www-form-urlencoded}} could allow attackers to {{c3::create a form and trigger a simple POST request}}.  
+###  When validating the content-type in API requests, prioritize accepting {{c1::application/\*json}}. Allowing other MIME types like {{c2::application/x-www-form-urlencoded}} can enable attackers to {{c3::create a form and trigger a POST request}}.  
 
 ========== Answer ==========  
 
-(Cloze) The server should never assume the Content-Type. A lack of Content-Type header or an unexpected Content-Type header should result in the server rejecting the content with a 4XX response.
+(Cloze) The server should **never assume the Content-Type**. If the Content-Type header is missing or incorrect, respond with a **4XX error** to reject unsupported content.
 
 ========== Id ==========  
 124

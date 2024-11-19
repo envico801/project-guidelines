@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-If there is an open discussion on GitHub or stackoverflow about the code or approach you're using, include the link in your comment.
+Include links to open discussions (e.g., on GitHub or StackOverflow) within comments when they provide helpful context or detail for the approach you're using.
 
 ========== Id ==========  
 29

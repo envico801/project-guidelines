@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-(Cloze) However, if you modify these libraries, you should review the license details carefully.
+(Cloze) However, if you **modify** these libraries, you should review the license details _carefully_.
 
 ========== Id ==========  
 154

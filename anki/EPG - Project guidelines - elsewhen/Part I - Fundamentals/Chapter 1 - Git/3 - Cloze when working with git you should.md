@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-(Cloze) It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
+(Cloze) Avoid pushing directly into `develop` or `master`. Instead, create a `Pull Request` to notify team members, enable peer-review, and open a discussion on the feature.
 
 ========== Id ==========  
 3

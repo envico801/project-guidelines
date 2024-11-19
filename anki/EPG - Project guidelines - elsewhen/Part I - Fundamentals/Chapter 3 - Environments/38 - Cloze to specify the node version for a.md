@@ -4,7 +4,11 @@
 
 ========== Answer ==========  
 
-(Cloze) This lets others know the version of node the project works on. [read more...](https://docs.npmjs.com/files/package.json#engines)
+(Cloze) Specify the node version in the `engines` field of `package.json`. This clarifies the required node version for the project.
+
+**References**:
+
+-   [npm documentation on engines](https://docs.npmjs.com/files/package.json#engines)
 
 ========== Id ==========  
 38

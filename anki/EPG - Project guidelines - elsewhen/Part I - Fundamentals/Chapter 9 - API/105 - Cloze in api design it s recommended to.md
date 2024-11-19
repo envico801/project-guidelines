@@ -1,10 +1,10 @@
 ========== Cloze Question ==========
 
-###  In API design, it's recommended to keep {{c1::verbs}} out of your {{c2::resource URLs}} because using a verb for each resource operation can lead to {{c3::a huge list of URLs}} and {{c4::no consistent pattern}}.  
+###  In API design, it’s recommended to exclude {{c1::verbs}} from {{c2::resource URLs}} to avoid {{c3::an excess of URLs}} and {{c4::inconsistent patterns}}.  
 
 ========== Answer ==========  
 
-(Cloze) This makes it difficult for developers to learn the API. Verbs are used for something else in API design.
+(Cloze) Excluding verbs from resource URLs **helps developers learn the API** more easily. In API design, verbs serve a different purpose.
 
 ========== Id ==========  
 105

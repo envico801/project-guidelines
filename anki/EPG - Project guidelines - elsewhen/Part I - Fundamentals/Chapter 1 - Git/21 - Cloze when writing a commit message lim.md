@@ -4,7 +4,11 @@
 
 ========== Answer ==========  
 
-(Cloze) Commits should be as fine-grained and focused as possible, it is not the place to be verbose. [read more...](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
+(Cloze) Limit the subject line to `50 characters` and wrap the body at `72 characters`. Keep commits focused and avoid verbosity.
+
+**References**:
+
+-   [The 50/72 rule for commit messages](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
 ========== Id ==========  
 21

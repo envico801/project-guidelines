@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-(Cloze) You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally, you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
+(Cloze) Ensure your feature branch `builds successfully` and `passes all tests`, including `code style checks`. This reduces the risk of issues in the destination branch and improves code readability.
 
 ========== Id ==========  
 7

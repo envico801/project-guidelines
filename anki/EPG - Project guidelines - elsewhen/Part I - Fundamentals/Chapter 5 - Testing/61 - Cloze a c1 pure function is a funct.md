@@ -4,7 +4,11 @@
 
 ========== Answer ==========  
 
-(Cloze) Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value, making it less predictable. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
+(Cloze) A pure function always returns the same output for the same input and has no side effects. In contrast, an impure function may rely on external factors or cause side effects, making it less predictable.
+
+**References**:
+
+-   [Read more on testable JavaScript code](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 ========== Id ==========  
 61

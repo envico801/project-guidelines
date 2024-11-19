@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-You can create a new feature or bug-fix branch using the command:
+Use the following command to create a new feature or bug-fix branch:
 
 ```sh
 git checkout -b <branchname>

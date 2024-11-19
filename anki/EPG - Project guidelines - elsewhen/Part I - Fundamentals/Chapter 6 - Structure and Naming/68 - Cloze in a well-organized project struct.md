@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-(Cloze) This organization makes it much easier to navigate through the project and find things at a glance, instead of dealing with a long list of files.
+(Cloze) Create small modules that encapsulate one responsibility, including their test. This structure makes it easier to navigate and find files quickly.
 
 ========== Id ==========  
 68

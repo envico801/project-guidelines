@@ -4,7 +4,11 @@
 
 ========== Answer ==========  
 
-(Cloze) `git add <file1> <file2> ... ` - you should add only files that make up a small and coherent change. `git commit` will start an editor which lets you separate the subject from the body. Read more about it in _section 1.3_.
+(Cloze) `git add <file1> <file2> ...` - You should add only files that make up a small, coherent change. `git commit` starts an editor where you can separate the subject from the body.
+
+**References**:
+
+-   _[Section 1.3](https://github.com/elsewhencode/project-guidelines#13-writing-good-commit-messages)_ for more information on commit structuring.
 
 ========== Id ==========  
 12

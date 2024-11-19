@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-(Cloze) This approach makes sense when breaking down config files for different purposes (database, API, etc.). It's important to remember that creating different config files for different environments doesn't scale cleanly as more deploys of the app are created.
+(Cloze) Configuration files should go in a `./config` folder, without creating separate config files for each environment. Instead, manage configuration based on purpose (e.g., database, API) for a scalable approach.
 
 ========== Id ==========  
 71

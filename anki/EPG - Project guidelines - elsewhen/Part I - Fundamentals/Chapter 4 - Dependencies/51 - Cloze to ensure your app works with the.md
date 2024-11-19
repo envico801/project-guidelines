@@ -4,7 +4,11 @@
 
 ========== Answer ==========  
 
-(Cloze) This helps you stay up-to-date with dependency updates, which sometimes contain breaking changes. [read more...](https://docs.npmjs.com/cli/outdated)
+(Cloze) Use the command `npm outdated` to verify if any dependencies need updating, which can help keep your project current with the latest patches and features.
+
+**References**:
+
+-   [npm outdated command documentation](https://docs.npmjs.com/cli/outdated)
 
 ========== Id ==========  
 51

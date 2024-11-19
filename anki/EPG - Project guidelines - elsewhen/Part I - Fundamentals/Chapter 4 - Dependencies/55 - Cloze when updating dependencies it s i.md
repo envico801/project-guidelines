@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-(Cloze) This practice helps you anticipate and address any issues that might arise from updating dependencies.
+(Cloze) Always review dependency release notes to be aware of potential breaking changes. This helps you anticipate and handle compatibility issues that may arise from updates.
 
 ========== Id ==========  
 55

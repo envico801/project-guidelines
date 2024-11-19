@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-(Cloze) This emphasizes the importance of writing clear, readable code rather than relying on comments to explain poorly written code.
+(Cloze) Comments should not be used as an **excuse for bad code**. Instead, focus on **keeping code clean** so that comments enhance, rather than compensate for, code quality.
 
 ========== Id ==========  
 30

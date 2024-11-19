@@ -1,10 +1,10 @@
 ========== Cloze Question ==========
 
-###  For POST requests in API documentation, you should provide {{c1::working examples}} and separate the parameters into {{c2::Optional}} and {{c3::Required}} sections.  
+###  For POST requests in API documentation, provide {{c1::working examples}} and categorize parameters into {{c2::Optional}} and {{c3::Required}} sections.  
 
 ========== Answer ==========  
 
-(Cloze) This helps users understand how to properly structure their POST requests to the API.
+(Cloze) This approach helps users understand how to structure **POST requests** properly.
 
 ========== Id ==========  
 132

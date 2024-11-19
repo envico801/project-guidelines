@@ -4,7 +4,15 @@
 
 ========== Answer ==========  
 
-Copyrighted images and videos may cause legal problems. It's important to ensure you have the right to use any visual content in your project.
+When using visual content in your project, consider these key points:
+
+-   **Copyright infringement**: Using copyrighted images and videos without proper permission may cause legal problems
+
+-   **Attribution requirements**: Some licenses require proper credit to the original creator
+
+-   **Usage restrictions**: Some licenses may limit how you can use or modify the content
+
+-   **Commercial vs. non-commercial use**: Different licenses may apply depending on your project's nature
 
 ========== Id ==========  
 155

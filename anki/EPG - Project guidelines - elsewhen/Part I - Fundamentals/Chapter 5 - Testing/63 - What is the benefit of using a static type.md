@@ -1,10 +1,14 @@
 ========== Question ==========  
 
-### What is the benefit of using a static type checker?  
+### What is the benefit of using a static type checker in testing?  
 
 ========== Answer ==========  
 
-A static type checker brings a certain level of reliability to your code. [read more...](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
+A static type checker enhances reliability by catching type-related errors before runtime, contributing to more robust code.
+
+**References**:
+
+-   [FreeCodeCamp article on static types](https://medium.freecodecamp.org/why-use-static-types-in-javascript-part-1-8382da1e0adb)
 
 ========== Id ==========  
 63

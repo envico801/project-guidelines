@@ -1,10 +1,10 @@
 ========== Question ==========  
 
-### Where should additional test files that don't relate to specific implementation files be placed?  
+### Where should additional test files that don’t relate to specific files be stored?  
 
 ========== Answer ==========  
 
-Additional test files that don't particularly relate to any specific implementation file should be put in a separate test folder, typically named `__test__`, to avoid confusion.
+Store additional test files in a separate folder, usually named `__test__`, to keep them distinct from specific implementation files and reduce confusion.
 
 ========== Id ==========  
 58
