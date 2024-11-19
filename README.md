@@ -8,7 +8,7 @@ A mystical conversion preserves the essence of the original content, with just a
 
 _(translation) - The Anki version’s got the same content as the original, just with some wonky formatting._
 
-**If the ankiweb links appear with this message** `«This shared item is missing or currently unavailable.»` **it is because I am updating the description of the page or the complete deck. To have the latest updates (shown in the changelog) you need to re-download the deck.**
+**If the ankiweb links appear with this message** `«This shared item is missing or currently unavailable.»` **it is because I am updating the description of the page or the complete deck, if this is the case you will have to wait 24 hours until the page is updated. To have the latest updates (shown in the changelog) you need to re-download the deck.**
 
 But wait, there’s more to explore on your journey:
 
@@ -54,14 +54,14 @@ Feeling chatty? Constructive feedback and suggestions are the secret sauce – s
 In case Anki forgets its styling magic, tap into the mystical powers of [CSS/HTML styles from my repository](https://github.com/envico801/anki-config/tree/main/cards/basic). Your eyes will thank you for the clarity! Pay special attention to the styles for code blocks and tables – those sneaky code blocks tend to lose their indentations, and table borders play hide and seek.
 
 <p align="center">
-    <a href="https://github.com/user-attachments/assets/484bc6fd-c731-43e7-8f26-f660b3c93e60" target="_blank">
-        <img src="https://github.com/user-attachments/assets/484bc6fd-c731-43e7-8f26-f660b3c93e60" alt="Card example 1" style="height: 200px;">
+    <a href="https://github.com/user-attachments/assets/7327d1d4-7b27-40b1-b095-e8172a9cd263" target="_blank">
+        <img src="https://github.com/user-attachments/assets/7327d1d4-7b27-40b1-b095-e8172a9cd263" alt="Card example 1" style="height: 200px;">
     </a>
-    <a href="https://github.com/user-attachments/assets/fb5e7d19-5015-4534-8dd0-3627a6ea0889" target="_blank">
-        <img src="https://github.com/user-attachments/assets/fb5e7d19-5015-4534-8dd0-3627a6ea0889" alt="Card example 2" style="height: 200px;">
+    <a href="https://github.com/user-attachments/assets/81e6de19-bbfc-4459-9a51-e687e87ffe4c" target="_blank">
+        <img src="https://github.com/user-attachments/assets/81e6de19-bbfc-4459-9a51-e687e87ffe4c" alt="Card example 2" style="height: 200px;">
     </a>
-    <a href="https://github.com/user-attachments/assets/414e5004-b54c-46a7-bc5f-1afb36612423" target="_blank">
-        <img src="https://github.com/user-attachments/assets/414e5004-b54c-46a7-bc5f-1afb36612423" alt="Card example 3" style="height: 200px;">
+    <a href="https://github.com/user-attachments/assets/b8c86463-f447-4b16-9569-1615f4fb910c" target="_blank">
+        <img src="https://github.com/user-attachments/assets/b8c86463-f447-4b16-9569-1615f4fb910c" alt="Card example 3" style="height: 200px;">
     </a>
 </p>
 
