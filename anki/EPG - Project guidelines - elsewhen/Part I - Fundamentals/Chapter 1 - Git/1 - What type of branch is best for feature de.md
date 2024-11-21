@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-You should perform work in a feature branch. This way, all work is done in isolation on a dedicated branch rather than the main branch, allowing you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code.
+You should perform work in a feature branch. This way, all work is done in isolation on a dedicated branch rather than the `main` branch, allowing you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code.
 
 **References**:
 

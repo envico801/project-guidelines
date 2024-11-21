@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-Clean code should not replace comments entirely. While code should be as readable as possible, comments are still needed to provide context and clarify complex or non-obvious logic.
+**Clean code should not replace comments entirely**. While code should be as readable as possible, comments are still needed to provide context and clarify complex or non-obvious logic.
 
 ========== Id ==========  
 31

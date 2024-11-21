@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-Include links to open discussions (e.g., on GitHub or StackOverflow) within comments when they provide helpful context or detail for the approach you're using.
+Include links to open discussions (e.g., on **GitHub** or **StackOverflow**) within comments when they provide helpful context or detail for the approach you're using.
 
 ========== Id ==========  
 29

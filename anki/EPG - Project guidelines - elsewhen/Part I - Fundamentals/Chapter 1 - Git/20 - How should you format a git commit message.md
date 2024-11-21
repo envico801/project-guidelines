@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-Separate the subject from the body with a newline. Git will interpret the first line as the summary. You can use `git shortlog` to display only commit summaries.
+Separate the **subject** from the **body** with a newline. Git will interpret the first line as the summary. You can use `git shortlog` to display only commit summaries.
 
 **References**:
 

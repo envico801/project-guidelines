@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-Before using a dependency, evaluate its release frequency, number of maintainers, and download statistics to determine if it is widely used and actively maintained. This helps ensure community support, ongoing updates, and timely bug fixes.
+Before using a dependency, **evaluate its release frequency, number of maintainers, and download statistics to determine if it is widely used and actively maintained**. This helps ensure community support, ongoing updates, and timely bug fixes.
 
 **References**:
 

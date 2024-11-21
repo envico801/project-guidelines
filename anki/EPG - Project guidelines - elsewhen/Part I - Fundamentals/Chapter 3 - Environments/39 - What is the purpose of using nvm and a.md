@@ -6,6 +6,8 @@
 
 A `.nvmrc` file and `nvm` allow users to switch to the correct node version with `nvm use`, ensuring a consistent environment.
 
+**Note**: `nvm` allows you to quickly install and use different versions of node via the command line.
+
 **References**:
 
 -   [nvm repository](https://github.com/creationix/nvm)
