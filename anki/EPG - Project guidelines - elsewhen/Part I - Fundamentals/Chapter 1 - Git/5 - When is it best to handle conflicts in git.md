@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-Resolve potential conflicts during rebasing and before submitting a Pull Request.
+Resolve potential conflicts **during rebasing and before submitting a Pull Request**.
 
 ========== Id ==========  
 5

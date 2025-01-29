@@ -4,7 +4,7 @@
 
 ========== Answer ==========  
 
-You should branch out from `develop`. This ensures that code in `master` will generally build without issues and can often be used directly for releases (though this may be overkill for smaller projects).
+**You should branch out from `develop`**. This ensures that code in `master` will generally build without issues and can often be used directly for releases (though this may be overkill for smaller projects).
 
 ========== Id ==========  
 2

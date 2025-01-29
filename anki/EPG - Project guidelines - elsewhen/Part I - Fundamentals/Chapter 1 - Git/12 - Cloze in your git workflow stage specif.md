@@ -1,6 +1,6 @@
 ========== Cloze Question ==========
 
-###  In your Git workflow, stage specific files with {{c1::git add <file1> <file2> ...}}, then {{c2::record those changes}} with a commit.  
+###  In your Git workflow, stage specific files with {{c1::`git add <file1> <file2> ...`}}, then {{c2::record those changes}} with a commit.  
 
 ========== Answer ==========  
 

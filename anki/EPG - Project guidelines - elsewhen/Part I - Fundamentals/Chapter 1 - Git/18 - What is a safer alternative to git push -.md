@@ -10,6 +10,8 @@ Use `--force-with-lease` instead of `-f` when others may also be working on the 
 
 -   [Explanation of `--force-with-lease`](https://developer.atlassian.com/blog/2015/04/force-with-lease/)
 
+-   [Web Archive (it will take some time to load)](https://web.archive.org/web/20180813203855/https://developer.atlassian.com/blog/2015/04/force-with-lease/)
+
 ========== Id ==========  
 18
 
